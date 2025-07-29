@@ -5,12 +5,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import ru.resodostudio.core.data.repository.MoviesRepository
-import ru.resodostudio.flick.core.model.data.ImageExtended
-import ru.resodostudio.flick.core.model.data.Movie
 import ru.resodostudio.flick.core.common.Dispatcher
 import ru.resodostudio.flick.core.common.FlickDispatchers.IO
-import ru.resodostudio.flick.core.common.FlickNetworkDataSource
-import ru.resodostudio.flick.core.common.model.asExternalModel
+import ru.resodostudio.flick.core.model.data.ImageExtended
+import ru.resodostudio.flick.core.model.data.Movie
+import ru.resodostudio.flick.core.network.FlickNetworkDataSource
+import ru.resodostudio.flick.core.network.model.asExternalModel
 import javax.inject.Inject
 
 class NetworkMoviesRepository @Inject constructor(

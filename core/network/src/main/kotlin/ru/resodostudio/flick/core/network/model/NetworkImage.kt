@@ -1,4 +1,4 @@
-package ru.resodostudio.flick.core.common.model
+package ru.resodostudio.flick.core.network.model
 
 import kotlinx.serialization.Serializable
 

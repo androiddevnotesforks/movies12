@@ -14,8 +14,8 @@ import ru.resodostudio.core.data.repository.network.NetworkSearchRepository
 import ru.resodostudio.core.data.repository.offline.OfflineUserDataRepository
 import ru.resodostudio.core.data.util.ConnectivityManagerNetworkMonitor
 import ru.resodostudio.core.data.util.NetworkMonitor
-import ru.resodostudio.flick.core.common.FlickNetworkDataSource
-import ru.resodostudio.flick.core.common.ktor.KtorFlickNetwork
+import ru.resodostudio.flick.core.network.FlickNetworkDataSource
+import ru.resodostudio.flick.core.network.ktor.KtorFlickNetwork
 
 @Module
 @InstallIn(SingletonComponent::class)

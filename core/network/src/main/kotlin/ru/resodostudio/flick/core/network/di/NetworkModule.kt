@@ -1,4 +1,4 @@
-package ru.resodostudio.flick.core.common.di
+package ru.resodostudio.flick.core.network.di
 
 import dagger.Module
 import dagger.Provides
@@ -16,6 +16,7 @@ import io.ktor.client.plugins.logging.ANDROID
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.resources.Resources
 import io.ktor.client.request.accept
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
@@ -59,6 +60,7 @@ object NetworkModule {
                 logger = Logger.ANDROID
                 level = LogLevel.BODY
             }
+            install(Resources)
             defaultRequest {
                 url(API_URL)
                 contentType(ContentType.Application.Json)
