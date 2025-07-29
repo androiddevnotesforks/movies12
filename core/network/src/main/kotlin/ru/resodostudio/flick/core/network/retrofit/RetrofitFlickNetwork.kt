@@ -9,7 +9,6 @@ import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import ru.resodostudio.flick.core.network.BuildConfig
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
 import ru.resodostudio.flick.core.network.model.NetworkCastCredits
 import ru.resodostudio.flick.core.network.model.NetworkCrewCredits
@@ -59,10 +58,8 @@ private interface RetrofitFlickNetworkApi {
     ): List<NetworkCrewCredits>
 }
 
-private const val FLICK_BASE_URL = BuildConfig.BACKEND_URL
-
 @Serializable
-private data class NetworkResult<T>(
+data class NetworkResult<T>(
     val results: T
 )
 
@@ -73,7 +70,7 @@ class RetrofitFlickNetwork @Inject constructor(
 ) : FlickNetworkDataSource {
 
     private val networkApi = Retrofit.Builder()
-        .baseUrl(FLICK_BASE_URL)
+        .baseUrl("")
         .addConverterFactory(
             networkJson.asConverterFactory("application/json".toMediaType()),
         )

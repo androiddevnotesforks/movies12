@@ -11,16 +11,14 @@ android {
         buildConfig = true
     }
     defaultConfig {
-        proguardFiles("consumer-rules.pro")
-
         val localPropertiesFile = rootProject.file("local.properties")
         val localProperties = Properties()
         localProperties.load(localPropertiesFile.inputStream())
 
-        val backendUrl = localProperties.getProperty("BACKEND_URL")
+        val apiUrl = localProperties.getProperty("API_URL")
         val apiKey = localProperties.getProperty("API_KEY")
 
-        buildConfigField("String", "BACKEND_URL", "\"$backendUrl\"")
+        buildConfigField("String", "API_URL", "\"$apiUrl\"")
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
     }
     namespace = "ru.resodostudio.flick.core.network"
@@ -41,4 +39,11 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.okhttp)
     implementation(libs.retrofit.kotlin.serialization)
+    implementation(platform(libs.ktor.bom))
+    implementation(libs.ktor.client.auth)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.serialization.kotlinx.json)
 }

@@ -15,7 +15,7 @@ import ru.resodostudio.core.data.repository.offline.OfflineUserDataRepository
 import ru.resodostudio.core.data.util.ConnectivityManagerNetworkMonitor
 import ru.resodostudio.core.data.util.NetworkMonitor
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
-import ru.resodostudio.flick.core.network.retrofit.RetrofitFlickNetwork
+import ru.resodostudio.flick.core.network.ktor.KtorFlickNetwork
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -47,7 +47,7 @@ interface DataModule {
     ): NetworkMonitor
 
     @Binds
-    fun bindRetrofit(
-        retrofit: RetrofitFlickNetwork
+    fun bindKtor(
+        ktor: KtorFlickNetwork
     ): FlickNetworkDataSource
 }

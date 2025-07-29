@@ -7,26 +7,26 @@ import ru.resodostudio.flick.core.model.data.Person
 
 @Serializable
 data class NetworkPerson(
-    val adult: Boolean,
-    val gender: Int,
-    val id: Int,
+    val adult: Boolean? = null,
+    val gender: Int? = null,
+    val id: Int? = null,
     @SerialName("known_for")
-    val knownFor: List<NetworkKnownFor>,
+    val knownFor: List<NetworkKnownFor>? = null,
     @SerialName("known_for_department")
-    val knownForDepartment: String,
-    val name: String,
+    val knownForDepartment: String? = null,
+    val name: String? = null,
     @SerialName("original_name")
-    val originalName: String,
-    val popularity: Double,
+    val originalName: String? = null,
+    val popularity: Double? = null,
     @SerialName("profile_path")
-    val profilePath: String
+    val profilePath: String? = null,
 )
 
 fun NetworkPerson.asExternalModel() = Person(
-    adult = adult,
-    gender = gender,
-    id = id,
-    knownFor = knownFor.map {
+    adult = adult ?: false,
+    gender = gender ?: -1,
+    id = id ?: -1,
+    knownFor = knownFor?.map {
         KnownFor(
             adult = it.adult,
             backdropPath = it.backdropPath,
@@ -48,10 +48,10 @@ fun NetworkPerson.asExternalModel() = Person(
             voteAverage = it.voteAverage,
             voteCount = it.voteCount
         )
-    },
-    knownForDepartment = knownForDepartment,
-    name = name,
-    originalName = originalName,
-    popularity = popularity,
-    profilePath = profilePath
+    } ?: emptyList(),
+    knownForDepartment = knownForDepartment.toString(),
+    name = name.toString(),
+    originalName = originalName.toString(),
+    popularity = popularity ?: 0.0,
+    profilePath = profilePath.toString(),
 )
