@@ -1,3 +1,5 @@
+import com.android.build.api.variant.BuildConfigField
+import java.io.StringReader
 import java.util.Properties
 
 plugins {
@@ -10,17 +12,6 @@ android {
     buildFeatures {
         buildConfig = true
     }
-    defaultConfig {
-        val localPropertiesFile = rootProject.file("local.properties")
-        val localProperties = Properties()
-        localProperties.load(localPropertiesFile.inputStream())
-
-        val apiUrl = localProperties.getProperty("API_URL")
-        val apiKey = localProperties.getProperty("API_KEY")
-
-        buildConfigField("String", "API_URL", "\"$apiUrl\"")
-        buildConfigField("String", "API_KEY", "\"$apiKey\"")
-    }
     namespace = "ru.resodostudio.flick.core.network"
     testOptions {
         unitTests {
@@ -30,15 +21,10 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.common)
-    implementation(projects.core.model)
+    api(projects.core.common)
+    api(projects.core.model)
 
-    implementation(libs.coil.kt.compose)
-    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.retrofit)
-    implementation(libs.okhttp)
-    implementation(libs.retrofit.kotlin.serialization)
     implementation(platform(libs.ktor.bom))
     implementation(libs.ktor.client.auth)
     implementation(libs.ktor.client.content.negotiation)
@@ -46,4 +32,31 @@ dependencies {
     implementation(libs.ktor.client.logging)
     implementation(libs.ktor.client.okhttp)
     implementation(libs.ktor.serialization.kotlinx.json)
+}
+
+val apiUrl = providers.fileContents(
+    isolated.rootProject.projectDirectory.file("local.properties")
+).asText.map { text ->
+    val properties = Properties()
+    properties.load(StringReader(text))
+    properties["API_URL"] as String?
+}.orElse("123")
+
+val apiKey = providers.fileContents(
+    isolated.rootProject.projectDirectory.file("local.properties")
+).asText.map { text ->
+    val properties = Properties()
+    properties.load(StringReader(text))
+    properties["API_KEY"] as String?
+}.orElse("123")
+
+androidComponents {
+    onVariants {
+        it.buildConfigFields?.put("API_URL", apiUrl.map { value ->
+            BuildConfigField(type = "String", value = """"$value"""", comment = null)
+        })
+        it.buildConfigFields?.put("API_KEY", apiKey.map { value ->
+            BuildConfigField(type = "String", value = """"$value"""", comment = null)
+        })
+    }
 }
