@@ -1,15 +1,16 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import ru.resodostudio.flick.configureKotlinJvm
+import org.gradle.kotlin.dsl.apply
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import ru.resodostudio.flick.configureKotlin
 
 class JvmLibraryConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
-            with(pluginManager) {
-                apply("org.jetbrains.kotlin.jvm")
-            }
-            configureKotlinJvm()
+            apply(plugin = "org.jetbrains.kotlin.jvm")
+
+            configureKotlin<KotlinJvmProjectExtension>()
         }
     }
 }
