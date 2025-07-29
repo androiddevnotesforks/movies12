@@ -3,6 +3,7 @@ package ru.resodostudio.flick.core.network.ktor
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import kotlinx.serialization.Serializable
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
 import ru.resodostudio.flick.core.network.model.NetworkCastCredits
 import ru.resodostudio.flick.core.network.model.NetworkCrewCredits
@@ -10,7 +11,6 @@ import ru.resodostudio.flick.core.network.model.NetworkImageExtended
 import ru.resodostudio.flick.core.network.model.NetworkMovie
 import ru.resodostudio.flick.core.network.model.NetworkPerson
 import ru.resodostudio.flick.core.network.model.NetworkSearchMovie
-import ru.resodostudio.flick.core.network.retrofit.NetworkResult
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -54,3 +54,8 @@ class KtorFlickNetwork @Inject constructor(
         TODO("Not yet implemented")
     }
 }
+
+@Serializable
+private data class NetworkResult<T>(
+    val results: T,
+)

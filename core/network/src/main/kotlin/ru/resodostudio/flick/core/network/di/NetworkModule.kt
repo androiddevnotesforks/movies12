@@ -16,38 +16,18 @@ import io.ktor.client.plugins.logging.ANDROID
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.request.accept
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import okhttp3.OkHttpClient
 import ru.resodostudio.flick.core.network.BuildConfig.API_KEY
 import ru.resodostudio.flick.core.network.BuildConfig.API_URL
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-
-    @Provides
-    @Singleton
-    fun providesNetworkJson(): Json = Json {
-        ignoreUnknownKeys = true
-        coerceInputValues = true
-    }
-
-    @Provides
-    @Singleton
-    fun providesOkHttpClient(): OkHttpClient =
-        OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                val request = chain.request().newBuilder()
-                    .header("Authorization", "Bearer $API_KEY")
-                    .build()
-                chain.proceed(request)
-            }
-            .readTimeout(15, TimeUnit.SECONDS)
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .build()
 
     @Provides
     @Singleton
@@ -81,6 +61,8 @@ object NetworkModule {
             }
             defaultRequest {
                 url(API_URL)
+                contentType(ContentType.Application.Json)
+                accept(ContentType.Application.Json)
             }
         }
     }
