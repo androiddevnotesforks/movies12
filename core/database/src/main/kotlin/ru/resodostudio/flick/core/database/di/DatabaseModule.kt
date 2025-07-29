@@ -1,4 +1,4 @@
-package ru.resodostudios.flick.core.database
+package ru.resodostudio.flick.core.database.di
 
 import android.content.Context
 import androidx.room.Room
@@ -7,21 +7,20 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import ru.resodostudio.flick.core.database.FlickDatabase
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DatabaseModule {
+internal object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideFlickDatabase(
+    fun providesFlickDatabase(
         @ApplicationContext context: Context,
     ): FlickDatabase = Room.databaseBuilder(
         context,
         FlickDatabase::class.java,
-        "flick-database"
-    )
-        .addMigrations(DatabaseMigrations.MIGRATION_1_2)
-        .build()
+        "flick-database",
+    ).build()
 }

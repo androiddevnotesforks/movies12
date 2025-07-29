@@ -16,10 +16,11 @@ dependencyResolutionManagement {
 rootProject.name = "flick"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":app")
 include(":core:common")
 include(":core:data")
-//include(":core:database")
+include(":core:database")
 include(":core:datastore")
 include(":core:datastore-proto")
 include(":core:designsystem")

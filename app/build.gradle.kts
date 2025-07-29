@@ -15,7 +15,6 @@ android {
         versionCode = 1
         versionName = "2.0.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -45,19 +44,12 @@ dependencies {
     implementation(projects.feature.home)
     implementation(projects.feature.movies)
     implementation(projects.feature.people)
-    //implementation(projects.feature.favorites)
     implementation(projects.feature.movie)
     implementation(projects.feature.person)
-    //implementation(projects.feature.search)
     implementation(projects.feature.settings)
 
-    implementation(projects.core.common)
     implementation(projects.core.data)
-    //implementation(projects.core.database)
-    implementation(projects.core.datastore)
     implementation(projects.core.designsystem)
-    implementation(projects.core.model)
-    implementation(projects.core.ui)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3.adaptive)
