@@ -49,7 +49,7 @@ import ru.resodostudio.flick.core.model.data.MovieExtended
 import ru.resodostudio.flick.core.ui.EmptyState
 import ru.resodostudio.flick.core.ui.LoadingState
 import ru.resodostudio.flick.core.ui.R.raw.anim_error_2
-import ru.resodostudio.flick.core.ui.formatDate
+import ru.resodostudio.flick.core.common.util.formatDate
 
 @Composable
 internal fun MovieRoute(

@@ -1,4 +1,4 @@
-package ru.resodostudio.flick.core.network.di
+package ru.resodostudio.flick.core.common.di
 
 import dagger.Module
 import dagger.Provides
@@ -21,8 +21,8 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import ru.resodostudio.flick.core.network.BuildConfig.API_KEY
-import ru.resodostudio.flick.core.network.BuildConfig.API_URL
+import ru.resodostudio.flick.core.common.BuildConfig.API_KEY
+import ru.resodostudio.flick.core.common.BuildConfig.API_URL
 import javax.inject.Singleton
 
 @Module

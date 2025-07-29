@@ -1,11 +1,11 @@
-package ru.resodostudio.flick.core.network
+package ru.resodostudio.flick.core.common
 
-import ru.resodostudio.flick.core.network.model.NetworkCastCredits
-import ru.resodostudio.flick.core.network.model.NetworkCrewCredits
-import ru.resodostudio.flick.core.network.model.NetworkImageExtended
-import ru.resodostudio.flick.core.network.model.NetworkMovie
-import ru.resodostudio.flick.core.network.model.NetworkPerson
-import ru.resodostudio.flick.core.network.model.NetworkSearchMovie
+import ru.resodostudio.flick.core.common.model.NetworkCastCredits
+import ru.resodostudio.flick.core.common.model.NetworkCrewCredits
+import ru.resodostudio.flick.core.common.model.NetworkImageExtended
+import ru.resodostudio.flick.core.common.model.NetworkMovie
+import ru.resodostudio.flick.core.common.model.NetworkPerson
+import ru.resodostudio.flick.core.common.model.NetworkSearchMovie
 
 interface FlickNetworkDataSource {
 

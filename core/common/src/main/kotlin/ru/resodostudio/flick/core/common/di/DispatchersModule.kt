@@ -1,4 +1,4 @@
-package ru.resodostudio.flick.core.network.di
+package ru.resodostudio.flick.core.common.di
 
 import dagger.Module
 import dagger.Provides
@@ -6,9 +6,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import ru.resodostudio.flick.core.network.Dispatcher
-import ru.resodostudio.flick.core.network.FlickDispatchers.Default
-import ru.resodostudio.flick.core.network.FlickDispatchers.IO
+import ru.resodostudio.flick.core.common.Dispatcher
+import ru.resodostudio.flick.core.common.FlickDispatchers.Default
+import ru.resodostudio.flick.core.common.FlickDispatchers.IO
 
 @Module
 @InstallIn(SingletonComponent::class)

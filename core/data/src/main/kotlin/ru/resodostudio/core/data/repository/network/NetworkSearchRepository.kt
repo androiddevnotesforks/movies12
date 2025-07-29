@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import ru.resodostudio.core.data.repository.SearchRepository
 import ru.resodostudio.flick.core.model.data.SearchMovie
-import ru.resodostudio.flick.core.network.Dispatcher
-import ru.resodostudio.flick.core.network.FlickDispatchers.IO
-import ru.resodostudio.flick.core.network.FlickNetworkDataSource
-import ru.resodostudio.flick.core.network.model.asExternalModel
+import ru.resodostudio.flick.core.common.Dispatcher
+import ru.resodostudio.flick.core.common.FlickDispatchers.IO
+import ru.resodostudio.flick.core.common.FlickNetworkDataSource
+import ru.resodostudio.flick.core.common.model.asExternalModel
 import javax.inject.Inject
 
 class NetworkSearchRepository @Inject constructor(

@@ -1,16 +1,16 @@
-package ru.resodostudio.flick.core.network.ktor
+package ru.resodostudio.flick.core.common.ktor
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.serialization.Serializable
-import ru.resodostudio.flick.core.network.FlickNetworkDataSource
-import ru.resodostudio.flick.core.network.model.NetworkCastCredits
-import ru.resodostudio.flick.core.network.model.NetworkCrewCredits
-import ru.resodostudio.flick.core.network.model.NetworkImageExtended
-import ru.resodostudio.flick.core.network.model.NetworkMovie
-import ru.resodostudio.flick.core.network.model.NetworkPerson
-import ru.resodostudio.flick.core.network.model.NetworkSearchMovie
+import ru.resodostudio.flick.core.common.FlickNetworkDataSource
+import ru.resodostudio.flick.core.common.model.NetworkCastCredits
+import ru.resodostudio.flick.core.common.model.NetworkCrewCredits
+import ru.resodostudio.flick.core.common.model.NetworkImageExtended
+import ru.resodostudio.flick.core.common.model.NetworkMovie
+import ru.resodostudio.flick.core.common.model.NetworkPerson
+import ru.resodostudio.flick.core.common.model.NetworkSearchMovie
 import javax.inject.Inject
 import javax.inject.Singleton
 

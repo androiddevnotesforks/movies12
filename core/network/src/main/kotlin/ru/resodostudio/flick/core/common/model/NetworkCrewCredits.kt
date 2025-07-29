@@ -1,10 +1,10 @@
-package ru.resodostudio.flick.core.network.model
+package ru.resodostudio.flick.core.common.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import ru.resodostudio.flick.core.model.data.CastCredits
 import ru.resodostudio.flick.core.model.data.Character
 import ru.resodostudio.flick.core.model.data.Country
+import ru.resodostudio.flick.core.model.data.CrewCredits
 import ru.resodostudio.flick.core.model.data.Embedded
 import ru.resodostudio.flick.core.model.data.Image
 import ru.resodostudio.flick.core.model.data.Movie
@@ -12,12 +12,13 @@ import ru.resodostudio.flick.core.model.data.Network
 import ru.resodostudio.flick.core.model.data.Rating
 
 @Serializable
-data class NetworkCastCredits(
+data class NetworkCrewCredits(
     @SerialName(value = "_embedded")
-    val embedded: NetworkEmbedded = NetworkEmbedded()
+    val embedded: NetworkEmbedded = NetworkEmbedded(),
+    val type: String = ""
 )
 
-fun NetworkCastCredits.asExternalModel() = CastCredits(
+fun NetworkCrewCredits.asExternalModel() = CrewCredits(
     embedded = Embedded(
         character = Character(
             id = embedded.character.id,
@@ -57,5 +58,6 @@ fun NetworkCastCredits.asExternalModel() = CastCredits(
                 average = embedded.movie.rating.average
             )
         )
-    )
+    ),
+    type = type
 )

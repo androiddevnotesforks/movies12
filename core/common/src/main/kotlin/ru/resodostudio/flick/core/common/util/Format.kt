@@ -1,4 +1,4 @@
-package ru.resodostudio.flick.core.ui
+package ru.resodostudio.flick.core.common.util
 
 import java.text.SimpleDateFormat
 import java.util.Locale

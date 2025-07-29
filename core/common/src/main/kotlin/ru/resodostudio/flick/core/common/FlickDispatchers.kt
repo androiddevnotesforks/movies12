@@ -1,4 +1,4 @@
-package ru.resodostudio.flick.core.network
+package ru.resodostudio.flick.core.common
 
 import javax.inject.Qualifier
 import kotlin.annotation.AnnotationRetention.RUNTIME

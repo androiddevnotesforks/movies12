@@ -12,7 +12,7 @@ android {
     buildFeatures {
         buildConfig = true
     }
-    namespace = "ru.resodostudio.flick.core.network"
+    namespace = "ru.resodostudio.flick.core.common"
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
