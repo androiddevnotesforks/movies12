@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.resodostudio.flick.core.database.FlickDatabase
+import ru.resodostudio.flick.core.database.dao.PeopleDao
 import ru.resodostudio.flick.core.database.dao.RemoteKeysDao
 
 @Module
@@ -15,4 +16,9 @@ internal object DaosModule {
     fun providesRemoteKeysDao(
         database: FlickDatabase,
     ): RemoteKeysDao = database.remoteKeysDao()
+
+    @Provides
+    fun providesPeopleDao(
+        database: FlickDatabase,
+    ): PeopleDao = database.peopleDao()
 }
