@@ -12,7 +12,7 @@ data class NetworkPerson(
     @SerialName("id")
     val id: Int? = null,
     @SerialName("known_for")
-    val knownFor: List<NetworkKnownFor?>? = null,
+    val knownFor: List<NetworkMovie>? = null,
     @SerialName("known_for_department")
     val knownForDepartment: String? = null,
     @SerialName("name")
