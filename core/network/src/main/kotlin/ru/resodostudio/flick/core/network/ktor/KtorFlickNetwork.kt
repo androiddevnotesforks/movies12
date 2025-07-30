@@ -32,9 +32,9 @@ class KtorFlickNetwork @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getPeople(): List<NetworkPerson> {
+    override suspend fun getPeople(page: Int): List<NetworkPerson> {
         return httpClient
-            .get(PersonResource.Popular())
+            .get(PersonResource.Popular(page = page))
             .body<NetworkResult<List<NetworkPerson>>>()
             .results
     }

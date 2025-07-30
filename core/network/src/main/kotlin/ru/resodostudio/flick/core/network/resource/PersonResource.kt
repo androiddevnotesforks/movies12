@@ -6,5 +6,8 @@ import io.ktor.resources.Resource
 internal class PersonResource() {
 
     @Resource("popular")
-    internal class Popular(val parent: PersonResource = PersonResource())
+    internal class Popular(
+        val parent: PersonResource = PersonResource(),
+        val page: Int = 1,
+    )
 }

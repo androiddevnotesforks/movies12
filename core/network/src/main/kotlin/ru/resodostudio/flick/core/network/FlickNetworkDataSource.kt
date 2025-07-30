@@ -15,7 +15,7 @@ interface FlickNetworkDataSource {
 
     suspend fun getMovieImages(id: Int): List<NetworkImageExtended>
 
-    suspend fun getPeople(): List<NetworkPerson>
+    suspend fun getPeople(page: Int): List<NetworkPerson>
 
     suspend fun getPerson(id: Int): NetworkPerson
 

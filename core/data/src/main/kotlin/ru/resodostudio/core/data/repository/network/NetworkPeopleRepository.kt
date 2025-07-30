@@ -15,7 +15,7 @@ class NetworkPeopleRepository @Inject constructor(
     override fun getPeople(): Flow<List<Person>> = flow {
         emit(
             network
-                .getPeople()
+                .getPeople(page = 1)
                 .map { it.asExternalModel() }
         )
     }
