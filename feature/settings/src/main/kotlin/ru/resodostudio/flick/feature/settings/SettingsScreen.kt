@@ -30,6 +30,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import ru.resodostudio.flick.core.designsystem.component.FlickLargeTopAppBar
 import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
+import ru.resodostudio.flick.core.designsystem.icon.rounded.ArrowBack
 import ru.resodostudio.flick.core.designsystem.theme.supportsDynamicTheming
 import ru.resodostudio.flick.core.model.data.DarkThemeConfig
 import ru.resodostudio.flick.core.ui.LoadingState
@@ -68,7 +69,7 @@ fun SettingsScreen(
                     FlickLargeTopAppBar(
                         titleRes = R.string.settings,
                         scrollBehavior = scrollBehavior,
-                        navigationIcon = FlickIcons.ArrowBack,
+                        navigationIcon = FlickIcons.Rounded.ArrowBack,
                         navigationIconContentDescription = stringResource(R.string.top_app_bar_navigation_icon_description),
                         onNavigationClick = onBackClick
                     )

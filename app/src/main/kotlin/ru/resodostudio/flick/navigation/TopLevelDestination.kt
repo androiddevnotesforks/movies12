@@ -1,36 +1,45 @@
 package ru.resodostudio.flick.navigation
 
+import androidx.compose.ui.graphics.vector.ImageVector
 import ru.resodostudio.flick.R
 import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
+import ru.resodostudio.flick.core.designsystem.icon.filled.Face
+import ru.resodostudio.flick.core.designsystem.icon.filled.Home
+import ru.resodostudio.flick.core.designsystem.icon.filled.LiveTv
+import ru.resodostudio.flick.core.designsystem.icon.filled.Theaters
+import ru.resodostudio.flick.core.designsystem.icon.rounded.Face
+import ru.resodostudio.flick.core.designsystem.icon.rounded.Home
+import ru.resodostudio.flick.core.designsystem.icon.rounded.LiveTv
+import ru.resodostudio.flick.core.designsystem.icon.rounded.Theaters
 
 enum class TopLevelDestination(
-    val selectedIcon: Int,
-    val unselectedIcon: Int,
+    val selectedIcon: ImageVector,
+    val unselectedIcon: ImageVector,
     val iconTextId: Int,
-    val titleTextId: Int
+    val titleTextId: Int,
 ) {
     HOME(
-        selectedIcon = FlickIcons.HomeFilled,
-        unselectedIcon = FlickIcons.Home,
+        selectedIcon = FlickIcons.Filled.Home,
+        unselectedIcon = FlickIcons.Rounded.Home,
         iconTextId = R.string.home,
-        titleTextId = R.string.app_name
+        titleTextId = R.string.app_name,
     ),
     MOVIES(
-        selectedIcon = FlickIcons.MoviesFilled,
-        unselectedIcon = FlickIcons.Movies,
+        selectedIcon = FlickIcons.Filled.Theaters,
+        unselectedIcon = FlickIcons.Rounded.Theaters,
         iconTextId = R.string.movies,
-        titleTextId = R.string.movies
+        titleTextId = R.string.movies,
     ),
     TV_SHOWS(
-        selectedIcon = FlickIcons.TvShowFilled,
-        unselectedIcon = FlickIcons.TvShow,
+        selectedIcon = FlickIcons.Filled.LiveTv,
+        unselectedIcon = FlickIcons.Rounded.LiveTv,
         iconTextId = R.string.tv_shows,
-        titleTextId = R.string.tv_shows
+        titleTextId = R.string.tv_shows,
     ),
     PEOPLE(
-        selectedIcon = FlickIcons.PeopleFilled,
-        unselectedIcon = FlickIcons.People,
+        selectedIcon = FlickIcons.Filled.Face,
+        unselectedIcon = FlickIcons.Rounded.Face,
         iconTextId = R.string.people,
-        titleTextId = R.string.people
+        titleTextId = R.string.people,
     )
 }

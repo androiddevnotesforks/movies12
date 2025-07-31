@@ -29,7 +29,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.zIndex
-import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -64,11 +63,6 @@ fun SearchBar(
             active = true,
             onActiveChange = { },
             placeholder = { Text(text = stringResource(titleRes)) },
-            leadingIcon = {
-                IconButton(onClick = onBackClick) {
-                    Icon(FlickIcons.ArrowBack, contentDescription = null)
-                }
-            },
             trailingIcon = {
                 if (query.isNotBlank()) {
                     IconButton(

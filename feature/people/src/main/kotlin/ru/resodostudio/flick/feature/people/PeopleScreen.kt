@@ -10,9 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -22,6 +20,7 @@ import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import ru.resodostudio.flick.core.designsystem.component.FlickSubcomposeAsyncImage
 import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
+import ru.resodostudio.flick.core.designsystem.icon.filled.Face
 import ru.resodostudio.flick.core.model.data.Person
 
 @Composable
@@ -98,7 +97,7 @@ private fun PersonItem(
                 size = 56.dp,
                 shape = MaterialTheme.shapes.medium,
                 contentScale = ContentScale.Crop,
-                errorIcon = ImageVector.vectorResource(FlickIcons.PeopleFilled),
+                errorIcon = FlickIcons.Filled.Face,
             )
         },
         modifier = modifier.clickable { onPersonClick(person.id) },

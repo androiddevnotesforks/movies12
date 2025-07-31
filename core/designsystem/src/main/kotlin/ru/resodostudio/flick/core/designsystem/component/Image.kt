@@ -1,7 +1,6 @@
 package ru.resodostudio.flick.core.designsystem.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -20,8 +19,6 @@ import coil3.compose.AsyncImage
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import coil3.request.error
-import ru.resodostudio.flick.core.designsystem.R
 
 @Composable
 fun FlickAsyncImage(
@@ -33,7 +30,6 @@ fun FlickAsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(url)
             .crossfade(true)
-            .error(if (isSystemInDarkTheme()) R.drawable.ic_outlined_face_white else R.drawable.ic_outlined_face)
             .build(),
         contentDescription = contentDescription,
         modifier = modifier,
