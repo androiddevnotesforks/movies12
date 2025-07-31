@@ -25,15 +25,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import ru.resodostudio.flick.R
 import ru.resodostudio.flick.core.designsystem.component.FlickTopAppBar
-import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
 import ru.resodostudio.flick.navigation.FlickNavHost
 import ru.resodostudio.flick.navigation.TopLevelDestination
 
@@ -68,7 +65,7 @@ fun FlickApp(
                     icon = {
                         val navItemIcon = if (selected) destination.selectedIcon else destination.unselectedIcon
                         Icon(
-                            imageVector = ImageVector.vectorResource(navItemIcon),
+                            imageVector = navItemIcon,
                             contentDescription = null,
                         )
                     },
@@ -103,12 +100,6 @@ fun FlickApp(
                     if (destination != null) {
                         FlickTopAppBar(
                             titleRes = destination.titleTextId,
-                            navigationIcon = FlickIcons.Search,
-                            navigationIconContentDescription = stringResource(R.string.top_app_bar_navigation_icon_description),
-                            actionIcon = FlickIcons.Settings,
-                            actionIconContentDescription = stringResource(R.string.top_app_bar_action_icon_description),
-                            onNavigationClick = { appState.navigateToSearch() },
-                            onActionClick = { appState.navigateToSettings() }
                         )
                     }
 

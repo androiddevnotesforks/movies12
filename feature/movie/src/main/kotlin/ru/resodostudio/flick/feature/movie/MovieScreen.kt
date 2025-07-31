@@ -17,8 +17,6 @@ import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -30,7 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -41,15 +38,13 @@ import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ru.resodostudio.flick.core.common.util.formatDate
 import ru.resodostudio.flick.core.designsystem.component.FlickAsyncImage
-import ru.resodostudio.flick.core.designsystem.component.NoTitleTopAppBar
-import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
 import ru.resodostudio.flick.core.model.data.Movie
 import ru.resodostudio.flick.core.model.data.MovieExtended
 import ru.resodostudio.flick.core.ui.EmptyState
 import ru.resodostudio.flick.core.ui.LoadingState
 import ru.resodostudio.flick.core.ui.R.raw.anim_error_2
-import ru.resodostudio.flick.core.common.util.formatDate
 
 @Composable
 internal fun MovieRoute(
@@ -80,37 +75,6 @@ internal fun MovieScreen(
         is MovieUiState.Success -> {
             Scaffold(
                 modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-                topBar = {
-                    NoTitleTopAppBar(
-                        scrollBehavior = scrollBehavior,
-                        onNavIconClick = onBackClick,
-                        actions = {
-                            if (movieState.data.isFavorite) {
-                                IconButton(
-                                    onClick = {
-
-                                    }
-                                ) {
-                                    Icon(
-                                        imageVector = FlickIcons.FavoritesFilled,
-                                        contentDescription = "Remove from Favorites"
-                                    )
-                                }
-                            } else {
-                                IconButton(
-                                    onClick = {
-
-                                    }
-                                ) {
-                                    Icon(
-                                        imageVector = FlickIcons.Favorites,
-                                        contentDescription = "Add to Favorites"
-                                    )
-                                }
-                            }
-                        }
-                    )
-                },
                 contentWindowInsets = WindowInsets.waterfall,
                 content = {
                     LazyColumn(
