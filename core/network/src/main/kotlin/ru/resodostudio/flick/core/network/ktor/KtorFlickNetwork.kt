@@ -15,11 +15,10 @@ class KtorFlickNetwork @Inject constructor(
     private val httpClient: HttpClient,
 ) : FlickNetworkDataSource {
 
-    override suspend fun getPeople(page: Int): List<NetworkPerson> {
+    override suspend fun getPeople(page: Int): NetworkResult<List<NetworkPerson>> {
         return httpClient
             .get(PersonResource.Popular(page = page))
             .body<NetworkResult<List<NetworkPerson>>>()
-            .results
     }
 
     override suspend fun getPerson(id: Int): NetworkPerson {
@@ -28,7 +27,7 @@ class KtorFlickNetwork @Inject constructor(
 }
 
 @Serializable
-private data class NetworkResult<T>(
+data class NetworkResult<T>(
     val page: Int,
     val results: T,
 )

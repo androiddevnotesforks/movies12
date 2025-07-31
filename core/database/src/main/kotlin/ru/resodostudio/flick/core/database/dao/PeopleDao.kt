@@ -10,7 +10,7 @@ import ru.resodostudio.flick.core.database.model.PersonEntity
 @Dao
 interface PeopleDao {
 
-    @Query("SELECT * FROM people")
+    @Query("SELECT * FROM people ORDER BY popularity DESC")
     fun getPersonEntities(): PagingSource<Int, PersonEntity>
 
     @Query("SELECT * FROM people WHERE id = :id")

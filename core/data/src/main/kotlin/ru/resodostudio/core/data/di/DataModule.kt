@@ -4,13 +4,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ru.resodostudio.core.data.repository.MoviesRepository
 import ru.resodostudio.core.data.repository.PeopleRepository
-import ru.resodostudio.core.data.repository.SearchRepository
+import ru.resodostudio.core.data.repository.PeopleRepositoryImpl
 import ru.resodostudio.core.data.repository.UserDataRepository
-import ru.resodostudio.core.data.repository.network.NetworkMoviesRepository
-import ru.resodostudio.core.data.repository.network.NetworkPeopleRepository
-import ru.resodostudio.core.data.repository.network.NetworkSearchRepository
 import ru.resodostudio.core.data.repository.offline.OfflineUserDataRepository
 import ru.resodostudio.core.data.util.ConnectivityManagerNetworkMonitor
 import ru.resodostudio.core.data.util.NetworkMonitor
@@ -19,35 +15,25 @@ import ru.resodostudio.flick.core.network.ktor.KtorFlickNetwork
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface DataModule {
+internal abstract class DataModule {
 
     @Binds
-    fun bindMoviesRepository(
-        moviesRepositoryImpl: NetworkMoviesRepository
-    ): MoviesRepository
-
-    @Binds
-    fun bindSearchRepository(
-        searchRepositoryImpl: NetworkSearchRepository
-    ): SearchRepository
-
-    @Binds
-    fun bindPeopleRepository(
-        peopleRepositoryImpl: NetworkPeopleRepository
+    internal abstract fun bindPeopleRepository(
+        peopleRepository: PeopleRepositoryImpl,
     ): PeopleRepository
 
     @Binds
-    fun bindUserDataRepository(
+    internal abstract fun bindUserDataRepository(
         userDataRepositoryImpl: OfflineUserDataRepository
     ): UserDataRepository
 
     @Binds
-    fun bindsNetworkMonitor(
+    internal abstract fun bindsNetworkMonitor(
         networkMonitor: ConnectivityManagerNetworkMonitor,
     ): NetworkMonitor
 
     @Binds
-    fun bindKtor(
-        ktor: KtorFlickNetwork
+    internal abstract fun bindKtor(
+        ktor: KtorFlickNetwork,
     ): FlickNetworkDataSource
 }
