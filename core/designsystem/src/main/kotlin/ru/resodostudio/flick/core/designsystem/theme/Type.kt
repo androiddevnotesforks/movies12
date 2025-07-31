@@ -16,7 +16,7 @@ internal val LibertinusSerifFontFamily = FontFamily(
     Font(resId = R.font.libertinus_serif_bold, weight = FontWeight.Bold),
 )
 
-internal val LibertinusSsnsFontFamily = FontFamily(
+internal val LibertinusSansFontFamily = FontFamily(
     Font(resId = R.font.libertinus_sans_regular),
     Font(resId = R.font.libertinus_sans_bold, weight = FontWeight.Bold),
 )
@@ -94,7 +94,7 @@ internal val FlickTypography = Typography(
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp,
-        fontFamily = LibertinusSsnsFontFamily,
+        fontFamily = LibertinusSansFontFamily,
         lineHeightStyle = LineHeightStyle(
             alignment = Alignment.Center,
             trim = Trim.None,
@@ -105,21 +105,21 @@ internal val FlickTypography = Typography(
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp,
-        fontFamily = LibertinusSsnsFontFamily,
+        fontFamily = LibertinusSansFontFamily,
     ),
     bodySmall = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.4.sp,
-        fontFamily = LibertinusSsnsFontFamily,
+        fontFamily = LibertinusSansFontFamily,
     ),
     labelLarge = TextStyle(
         fontWeight = FontWeight.Bold,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.1.sp,
-        fontFamily = LibertinusSsnsFontFamily,
+        fontFamily = LibertinusSansFontFamily,
         lineHeightStyle = LineHeightStyle(
             alignment = Alignment.Center,
             trim = Trim.LastLineBottom,
@@ -130,7 +130,7 @@ internal val FlickTypography = Typography(
         fontSize = 12.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp,
-        fontFamily = LibertinusSsnsFontFamily,
+        fontFamily = LibertinusSansFontFamily,
         lineHeightStyle = LineHeightStyle(
             alignment = Alignment.Center,
             trim = Trim.LastLineBottom,
@@ -141,7 +141,7 @@ internal val FlickTypography = Typography(
         fontSize = 10.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.sp,
-        fontFamily = LibertinusSsnsFontFamily,
+        fontFamily = LibertinusSansFontFamily,
         lineHeightStyle = LineHeightStyle(
             alignment = Alignment.Center,
             trim = Trim.LastLineBottom,
