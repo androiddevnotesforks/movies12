@@ -62,33 +62,45 @@ private fun LazyGridScope.people(
         contentType = peopleState.itemContentType { "People" },
     ) { index ->
         peopleState[index]?.let { person ->
-            ListItem(
-                headlineContent = {
-                    Text(
-                        text = person.originalName,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                },
-                supportingContent = {
-                    Text(
-                        text = person.name,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                },
-                leadingContent = {
-                    FlickSubcomposeAsyncImage(
-                        imagePath = person.profilePath,
-                        contentDescription = null,
-                        size = 56.dp,
-                        shape = MaterialTheme.shapes.medium,
-                        contentScale = ContentScale.Crop,
-                        errorIcon = ImageVector.vectorResource(FlickIcons.PeopleFilled),
-                    )
-                },
-                modifier = Modifier.clickable { onPersonClick(person.id) },
+            PersonItem(
+                person = person,
+                onPersonClick = onPersonClick,
             )
         }
     }
+}
+
+@Composable
+private fun PersonItem(
+    person: Person,
+    onPersonClick: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    ListItem(
+        headlineContent = {
+            Text(
+                text = person.originalName,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        },
+        supportingContent = {
+            Text(
+                text = person.name,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        },
+        leadingContent = {
+            FlickSubcomposeAsyncImage(
+                imagePath = person.profilePath,
+                contentDescription = null,
+                size = 56.dp,
+                shape = MaterialTheme.shapes.medium,
+                contentScale = ContentScale.Crop,
+                errorIcon = ImageVector.vectorResource(FlickIcons.PeopleFilled),
+            )
+        },
+        modifier = modifier.clickable { onPersonClick(person.id) },
+    )
 }
