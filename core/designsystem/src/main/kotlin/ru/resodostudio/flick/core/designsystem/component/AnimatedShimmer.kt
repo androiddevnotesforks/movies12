@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AnimatedShimmer() {
-    val shimmerColor = MaterialTheme.colorScheme.onSurfaceVariant
+    val shimmerColor = MaterialTheme.colorScheme.surfaceVariant
     val shimmerColors = listOf(
         shimmerColor.copy(alpha = 0.6f),
         shimmerColor.copy(alpha = 0.2f),
