@@ -153,7 +153,6 @@ private fun MovieHeader(movie: Movie) {
             modifier = Modifier
                 .size(width = 130.dp, height = 181.dp)
                 .clip(RoundedCornerShape(12.dp)),
-            contentScale = ContentScale.Crop
         )
 
         Column(
@@ -311,7 +310,6 @@ private fun MovieBody(
                                             pixels = imageExtended.resolutions.original.width.div(2f)
                                         )
                                     ),
-                                contentScale = ContentScale.Crop
                             )
                         }
                     }

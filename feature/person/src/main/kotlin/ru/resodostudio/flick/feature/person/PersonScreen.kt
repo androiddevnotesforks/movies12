@@ -123,7 +123,6 @@ private fun PersonHeader(person: Person) {
             modifier = Modifier
                 .size(width = 125.dp, height = 176.dp)
                 .clip(RoundedCornerShape(12.dp)),
-            contentScale = ContentScale.Crop
         )
 
         Column(
