@@ -11,7 +11,6 @@ dependencies {
     api(libs.androidx.compose.material3)
     api(libs.androidx.compose.ui.util)
 
-    implementation(libs.androidx.ui.text.google.fonts)
     implementation(platform(libs.coil.bom))
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)

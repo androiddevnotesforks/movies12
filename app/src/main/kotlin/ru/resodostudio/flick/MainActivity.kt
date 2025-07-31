@@ -83,7 +83,7 @@ class MainActivity : ComponentActivity() {
 
             FlickTheme(
                 darkTheme = darkTheme,
-                disableDynamicTheming = shouldDisableDynamicTheming(uiState),
+                dynamicTheme = shouldDisableDynamicTheming(uiState),
             ) {
                 FlickApp(appState)
             }

@@ -1,5 +1,6 @@
 package ru.resodostudio.flick.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -18,6 +19,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.WindowAdaptiveInfo
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteItem
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
 import androidx.compose.runtime.Composable
@@ -53,17 +55,20 @@ fun FlickApp(
     }
 
     val currentDestination = appState.currentDestination
-    val layoutType = NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(windowAdaptiveInfo)
+    val navigationSuiteType =
+        NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(windowAdaptiveInfo)
 
     NavigationSuiteScaffold(
-        layoutType = layoutType,
-        navigationSuiteItems = {
+        navigationSuiteType = navigationSuiteType,
+        navigationItemVerticalArrangement = Arrangement.Center,
+        navigationItems = {
             appState.topLevelDestinations.forEach { destination ->
                 val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
-                item(
+                NavigationSuiteItem(
                     selected = selected,
                     icon = {
-                        val navItemIcon = if (selected) destination.selectedIcon else destination.unselectedIcon
+                        val navItemIcon =
+                            if (selected) destination.selectedIcon else destination.unselectedIcon
                         Icon(
                             imageVector = navItemIcon,
                             contentDescription = null,
@@ -82,7 +87,12 @@ fun FlickApp(
     ) {
         Scaffold(
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
-            snackbarHost = { SnackbarHost(snackbarHostState) },
+            snackbarHost = {
+                SnackbarHost(
+                    hostState = snackbarHostState,
+                    modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
+                )
+            },
         ) { innerPadding ->
             Row(
                 Modifier

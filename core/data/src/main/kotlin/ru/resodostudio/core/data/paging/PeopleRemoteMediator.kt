@@ -44,7 +44,6 @@ class PeopleRemoteMediator @Inject constructor(
 
             if (loadType == LoadType.REFRESH) {
                 remoteKeysDao.deleteRemoteKey(query)
-                peopleDao.deletePeople()
             }
 
             val nextKey = (networkPeople.page + 1).coerceIn(1, 500)

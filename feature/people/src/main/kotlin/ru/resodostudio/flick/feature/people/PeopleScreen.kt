@@ -75,17 +75,23 @@ private fun PersonItem(
     onPersonClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val genderText = when (person.gender) {
+        1 -> "Female"
+        2 -> "Male"
+        3 -> "Non-binary"
+        else -> "Unknown"
+    }
     ListItem(
         headlineContent = {
             Text(
-                text = person.originalName,
+                text = person.name,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
         },
         supportingContent = {
             Text(
-                text = person.name,
+                text = genderText,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
