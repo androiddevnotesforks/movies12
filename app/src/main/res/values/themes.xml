@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.Movies" parent="android:Theme.Material.NoActionBar"/>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Allows us to override night specific attributes in the
+         values-night folder. -->
+    <style name="NightAdjusted.Theme.Flick" parent="Theme.AppCompat.Light.NoActionBar" />
+
+    <!-- The final theme we use -->
+    <style name="Theme.Flick" parent="NightAdjusted.Theme.Flick">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+    </style>
+
+    <style name="NightAdjusted.Theme.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <style name="Theme.Flick.Splash" parent="NightAdjusted.Theme.Splash">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Flick</item>
+    </style>
+
 </resources>
