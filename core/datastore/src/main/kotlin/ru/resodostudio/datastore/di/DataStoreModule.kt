@@ -12,9 +12,9 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import ru.resodostudio.datastore.UserPreferencesSerializer
-import ru.resodostudio.flick.core.network.Dispatcher
-import ru.resodostudio.flick.core.network.FlickDispatchers.IO
-import ru.resodostudio.flick.core.network.di.ApplicationScope
+import ru.resodostudio.flick.core.common.Dispatcher
+import ru.resodostudio.flick.core.common.FlickDispatchers.IO
+import ru.resodostudio.flick.core.common.di.ApplicationScope
 import ru.resodostudios.flick.core.datastore.UserPreferences
 import javax.inject.Singleton
 

@@ -35,7 +35,7 @@ import ru.resodostudio.flick.core.model.data.Person
 import ru.resodostudio.flick.core.ui.EmptyState
 import ru.resodostudio.flick.core.ui.LoadingState
 import ru.resodostudio.flick.core.ui.R.raw.anim_error_2
-import ru.resodostudio.flick.core.ui.formatDate
+import ru.resodostudio.flick.core.common.util.formatDate
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -123,7 +123,6 @@ private fun PersonHeader(person: Person) {
             modifier = Modifier
                 .size(width = 125.dp, height = 176.dp)
                 .clip(RoundedCornerShape(12.dp)),
-            contentScale = ContentScale.Crop
         )
 
         Column(

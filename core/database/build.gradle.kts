@@ -1,15 +1,13 @@
 plugins {
     alias(libs.plugins.flick.android.library)
-    alias(libs.plugins.flick.android.hilt)
     alias(libs.plugins.flick.android.room)
+    alias(libs.plugins.flick.hilt)
 }
 
 android {
-    namespace = "ru.resodostudios.flick.core.database"
+    namespace = "ru.resodostudio.flick.core.database"
 }
 
 dependencies {
-    implementation(projects.core.model)
-
-    implementation(libs.kotlinx.coroutines.android)
+    api(projects.core.model)
 }

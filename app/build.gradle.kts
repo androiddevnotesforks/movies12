@@ -15,12 +15,10 @@ android {
         versionCode = 1
         versionName = "2.0.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
-
     buildTypes {
         debug {
             applicationIdSuffix = FlickBuildType.DEBUG.applicationIdSuffix
@@ -33,9 +31,12 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
         }
     }
+    androidResources {
+        generateLocaleConfig = true
+    }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
     }
     namespace = "ru.resodostudio.flick"
@@ -45,19 +46,12 @@ dependencies {
     implementation(projects.feature.home)
     implementation(projects.feature.movies)
     implementation(projects.feature.people)
-    //implementation(projects.feature.favorites)
     implementation(projects.feature.movie)
     implementation(projects.feature.person)
-    //implementation(projects.feature.search)
     implementation(projects.feature.settings)
 
-    implementation(projects.core.common)
     implementation(projects.core.data)
-    //implementation(projects.core.database)
-    implementation(projects.core.datastore)
     implementation(projects.core.designsystem)
-    implementation(projects.core.model)
-    implementation(projects.core.ui)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3.adaptive)
@@ -67,5 +61,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.runtimeCompose)
-    implementation(libs.coil.kt.compose)
+    implementation(platform(libs.coil.bom))
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 }

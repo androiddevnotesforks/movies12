@@ -1,9 +1,15 @@
 pluginManagement {
     includeBuild("build-logic")
     repositories {
-        gradlePluginPortal()
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
@@ -13,13 +19,16 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "flick"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":app")
+
 include(":core:common")
 include(":core:data")
-//include(":core:database")
+include(":core:database")
 include(":core:datastore")
 include(":core:datastore-proto")
 include(":core:designsystem")

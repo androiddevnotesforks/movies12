@@ -15,11 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ru.resodostudio.flick.core.designsystem.component.FlickSubcomposeAsyncImage
+import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
 import ru.resodostudio.flick.core.model.data.Movie
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,9 +36,11 @@ fun MovieCard(movie: Movie, onMovieClick: (Int) -> Unit) {
         ) {
             Box {
                 FlickSubcomposeAsyncImage(
-                    imageUrl = movie.image.medium,
+                    imagePath = movie.image.medium,
                     contentDescription = null,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    size = 64.dp,
+                    errorIcon = ImageVector.vectorResource(FlickIcons.Movies),
                 )
 
                 Surface(

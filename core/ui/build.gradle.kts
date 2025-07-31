@@ -14,6 +14,8 @@ dependencies {
     api(projects.core.designsystem)
     api(projects.core.model)
 
-    implementation(libs.coil.kt.compose)
+    implementation(platform(libs.coil.bom))
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
     implementation(libs.lottie.compose)
 }

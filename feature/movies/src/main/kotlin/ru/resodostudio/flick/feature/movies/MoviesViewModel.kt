@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
@@ -15,13 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
-    moviesRepository: MoviesRepository
+    //moviesRepository: MoviesRepository
 ) : ViewModel() {
 
-    val moviesUiState: StateFlow<MoviesUiState> = moviesRepository.getMovies()
-        .map<List<Movie>, MoviesUiState>(MoviesUiState::Success)
+    val moviesUiState: StateFlow<MoviesUiState> = flowOf(MoviesUiState.Loading)
         .onStart { emit(MoviesUiState.Loading) }
-        .catch { emit(MoviesUiState.Error(it.localizedMessage?.toString() ?: "")) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
