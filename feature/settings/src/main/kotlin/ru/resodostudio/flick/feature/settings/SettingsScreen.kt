@@ -1,6 +1,5 @@
 package ru.resodostudio.flick.feature.settings
 
-import android.content.Intent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,7 +26,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import ru.resodostudio.flick.core.designsystem.component.FlickLargeTopAppBar
 import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
 import ru.resodostudio.flick.core.designsystem.icon.rounded.ArrowBack
@@ -163,12 +161,11 @@ private fun LazyListScope.settings(
     }
 
     item {
-        val context = LocalContext.current
         ListItem(
             headlineContent = { Text(text = stringResource(R.string.open_source_licenses)) },
             supportingContent = { Text(text = stringResource(R.string.open_source_licenses_details)) },
             modifier = Modifier.clickable {
-                context.startActivity(Intent(context, OssLicensesMenuActivity::class.java))
+
             }
         )
     }
