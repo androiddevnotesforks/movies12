@@ -1,17 +1,24 @@
 package ru.resodostudio.flick.feature.people
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -48,7 +55,10 @@ internal fun PeopleScreen(
         onRefresh = { peopleState.refresh() },
     ) {
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(300.dp),
+            columns = GridCells.Adaptive(150.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            contentPadding = PaddingValues(16.dp),
             modifier = Modifier.fillMaxSize(),
         ) {
             people(
@@ -69,7 +79,7 @@ private fun LazyGridScope.people(
         contentType = peopleState.itemContentType { "People" },
     ) { index ->
         peopleState[index]?.let { person ->
-            PersonItem(
+            PersonCard(
                 person = person,
                 onPersonClick = onPersonClick,
                 modifier = Modifier.animateItem(),
@@ -79,42 +89,40 @@ private fun LazyGridScope.people(
 }
 
 @Composable
-private fun PersonItem(
+private fun PersonCard(
     person: Person,
     onPersonClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val genderText = when (person.gender) {
-        1 -> "Female"
-        2 -> "Male"
-        3 -> "Non-binary"
-        else -> "Unknown"
-    }
-    ListItem(
-        headlineContent = {
+    OutlinedCard(
+        modifier = modifier,
+        onClick = { onPersonClick(person.id) },
+        shape = MaterialTheme.shapes.large,
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+        ) {
+            BoxWithConstraints(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                FlickSubcomposeAsyncImage(
+                    imagePath = person.profilePath,
+                    contentDescription = null,
+                    size = maxWidth,
+                    shape = MaterialTheme.shapes.large,
+                    errorIcon = FlickIcons.Filled.Face,
+                    contentScale = ContentScale.Crop,
+                )
+            }
             Text(
                 text = person.name,
-                maxLines = 1,
+                style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Center,
                 overflow = TextOverflow.Ellipsis,
-            )
-        },
-        supportingContent = {
-            Text(
-                text = genderText,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(12.dp),
             )
-        },
-        leadingContent = {
-            FlickSubcomposeAsyncImage(
-                imagePath = person.profilePath,
-                contentDescription = null,
-                size = 56.dp,
-                shape = MaterialTheme.shapes.medium,
-                contentScale = ContentScale.Crop,
-                errorIcon = FlickIcons.Filled.Face,
-            )
-        },
-        modifier = modifier.clickable { onPersonClick(person.id) },
-    )
+        }
+    }
 }
