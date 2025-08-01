@@ -8,12 +8,14 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
@@ -40,14 +42,20 @@ internal fun PeopleScreen(
     peopleState: LazyPagingItems<Person>,
     onPersonClick: (Int) -> Unit,
 ) {
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(300.dp),
-        modifier = Modifier.fillMaxSize(),
+    val isRefreshing = peopleState.loadState.refresh is LoadState.Loading
+    PullToRefreshBox(
+        isRefreshing = isRefreshing,
+        onRefresh = { peopleState.refresh() },
     ) {
-        people(
-            peopleState = peopleState,
-            onPersonClick = onPersonClick,
-        )
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(300.dp),
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            people(
+                peopleState = peopleState,
+                onPersonClick = onPersonClick,
+            )
+        }
     }
 }
 
@@ -64,6 +72,7 @@ private fun LazyGridScope.people(
             PersonItem(
                 person = person,
                 onPersonClick = onPersonClick,
+                modifier = Modifier.animateItem(),
             )
         }
     }
