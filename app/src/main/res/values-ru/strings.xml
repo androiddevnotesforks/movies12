@@ -13,8 +13,6 @@
     <string name="search">Поиск</string>
 
     <string name="country_empty">Страна не указана</string>
-    <string name="summary">Описание</string>
-    <string name="minutes">минут(-ы)</string>
     <string name="images">Изображения</string>
     <string name="not_connected">⛔ Вы не подключены к интернету</string>
     <string name="crew">Съёмочная группа</string>
