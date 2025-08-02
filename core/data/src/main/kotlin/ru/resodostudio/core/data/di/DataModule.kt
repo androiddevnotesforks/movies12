@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import ru.resodostudio.core.data.repository.MoviesRepository
+import ru.resodostudio.core.data.repository.MoviesRepositoryImpl
 import ru.resodostudio.core.data.repository.PeopleRepository
 import ru.resodostudio.core.data.repository.PeopleRepositoryImpl
 import ru.resodostudio.core.data.repository.UserDataRepository
@@ -18,12 +20,17 @@ import ru.resodostudio.flick.core.network.ktor.KtorFlickNetwork
 internal abstract class DataModule {
 
     @Binds
-    internal abstract fun bindPeopleRepository(
+    internal abstract fun bindsMoviesRepository(
+        moviesRepository: MoviesRepositoryImpl,
+    ) : MoviesRepository
+
+    @Binds
+    internal abstract fun bindsPeopleRepository(
         peopleRepository: PeopleRepositoryImpl,
     ): PeopleRepository
 
     @Binds
-    internal abstract fun bindUserDataRepository(
+    internal abstract fun bindsUserDataRepository(
         userDataRepositoryImpl: OfflineUserDataRepository
     ): UserDataRepository
 

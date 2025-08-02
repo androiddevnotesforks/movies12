@@ -14,7 +14,7 @@ import ru.resodostudio.flick.core.network.FlickNetworkDataSource
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
-class PeopleRemoteMediator @Inject constructor(
+internal class PeopleRemoteMediator @Inject constructor(
     private val network: FlickNetworkDataSource,
     private val peopleDao: PeopleDao,
     private val remoteKeysDao: RemoteKeysDao,

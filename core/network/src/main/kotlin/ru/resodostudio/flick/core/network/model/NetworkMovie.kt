@@ -10,7 +10,7 @@ data class NetworkMovie(
     @SerialName("backdrop_path")
     val backdropPath: String? = null,
     @SerialName("genre_ids")
-    val genreIds: List<Int?>? = null,
+    val genreIds: List<Int>? = null,
     @SerialName("id")
     val id: Int? = null,
     @SerialName("original_language")
