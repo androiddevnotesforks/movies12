@@ -7,9 +7,13 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.ContainedLoadingIndicator
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
@@ -69,6 +73,7 @@ internal fun PeopleScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 private fun LazyGridScope.people(
     peopleState: LazyPagingItems<Person>,
     onPersonClick: (Int) -> Unit,
@@ -83,6 +88,19 @@ private fun LazyGridScope.people(
                 person = person,
                 onPersonClick = onPersonClick,
                 modifier = Modifier.animateItem(),
+            )
+        }
+    }
+    if (peopleState.loadState.append is LoadState.Loading) {
+        item(
+            span = { GridItemSpan(maxLineSpan) },
+            contentType = { "Loading" },
+        ) {
+            ContainedLoadingIndicator(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .animateItem(),
             )
         }
     }
