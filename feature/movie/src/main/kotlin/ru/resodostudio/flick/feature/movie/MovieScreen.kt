@@ -86,8 +86,8 @@ internal fun MovieScreen(
                             }
                             item {
                                 MovieBody(
-                                    movieExtended = movieState.data,
-                                    onPersonClick = onPersonClick
+                                    movie = movieState.data.movie,
+                                    onPersonClick = onPersonClick,
                                 )
                             }
                             item { Spacer(modifier = Modifier.height(50.dp)) }
@@ -112,7 +112,7 @@ private fun MovieHeader(movie: Movie) {
         verticalAlignment = Alignment.Top
     ) {
         FlickAsyncImage(
-            url = movie.image.medium,
+            url = movie.backdropPath,
             contentDescription = null,
             modifier = Modifier
                 .size(width = 130.dp, height = 181.dp)
@@ -125,7 +125,7 @@ private fun MovieHeader(movie: Movie) {
         ) {
             Text(
                 modifier = Modifier.padding(top = 8.dp),
-                text = movie.name,
+                text = movie.title,
                 style = MaterialTheme.typography.headlineSmall,
                 textAlign = TextAlign.Start,
                 fontWeight = FontWeight.Bold
@@ -136,7 +136,7 @@ private fun MovieHeader(movie: Movie) {
                 color = MaterialTheme.colorScheme.secondaryContainer
             ) {
                 Text(
-                    text = movie.rating.average.toString(),
+                    text = movie.voteAverage.toString(),
                     modifier = Modifier
                         .padding(
                             start = 8.dp,
@@ -153,9 +153,9 @@ private fun MovieHeader(movie: Movie) {
             Column(
                 horizontalAlignment = Alignment.Start
             ) {
-                if (movie.genres.isNotEmpty()) {
+                if (movie.genreIds.isNotEmpty()) {
                     Text(
-                        text = movie.genres.take(3).joinToString(", "),
+                        text = movie.genreIds.take(3).joinToString(", "),
                         style = MaterialTheme.typography.labelLarge,
                         textAlign = TextAlign.Start,
                         maxLines = 1,
@@ -163,38 +163,19 @@ private fun MovieHeader(movie: Movie) {
                     )
                 }
 
-                if (movie.premiered.isNotBlank()) {
+                if (movie.releaseDate.isNotBlank()) {
                     Text(
-                        text = formatDate(movie.premiered),
+                        text = movie.releaseDate,
                         style = MaterialTheme.typography.labelLarge,
                         textAlign = TextAlign.Start
                     )
                 }
 
-                val countryInfo = listOf(movie.network.country.name, movie.network.country.code)
-                if (movie.network.country.name.isNotBlank()) {
+                if (movie.originalLanguage.isNotBlank()) {
                     Text(
-                        text = countryInfo.joinToString(", "),
+                        text = movie.originalLanguage,
                         style = MaterialTheme.typography.labelLarge,
-                        textAlign = TextAlign.Start
-                    )
-                }
-
-                val statusInfo = listOf(
-                    movie.status,
-                    "${movie.averageRuntime} ${stringResource(R.string.minutes)}"
-                )
-                Text(
-                    text = statusInfo.joinToString(", "),
-                    style = MaterialTheme.typography.labelLarge,
-                    textAlign = TextAlign.Start
-                )
-
-                if (movie.language.isNotBlank()) {
-                    Text(
-                        text = movie.language,
-                        style = MaterialTheme.typography.labelLarge,
-                        textAlign = TextAlign.Start
+                        textAlign = TextAlign.Start,
                     )
                 }
             }
@@ -208,7 +189,7 @@ private fun MovieHeader(movie: Movie) {
 
 @Composable
 private fun MovieBody(
-    movieExtended: MovieExtended,
+    movie: Movie,
     onPersonClick: (Int) -> Unit
 ) {
     Column(
@@ -224,62 +205,59 @@ private fun MovieBody(
                 color = MaterialTheme.colorScheme.secondary
             )
             Text(
-                text = HtmlCompat.fromHtml(
-                    movieExtended.movie.summary,
-                    HtmlCompat.FROM_HTML_MODE_COMPACT
-                ).toString(),
+                text = movie.overview,
                 style = MaterialTheme.typography.bodyMedium,
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis
             )
         }
 
-        if (movieExtended.images.isNotEmpty()) {
-            val context = LocalContext.current
-
-            Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.padding(bottom = 16.dp, top = 8.dp)
-            ) {
-                Text(
-                    text = stringResource(R.string.images),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.secondary,
-                    modifier = Modifier.padding(start = 16.dp)
-                )
-
-                LazyHorizontalStaggeredGrid(
-                    rows = StaggeredGridCells.Adaptive(150.dp),
-                    modifier = Modifier
-                        .height(400.dp)
-                        .padding(top = 8.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    content = {
-                        items(movieExtended.images) { imageExtended ->
-                            FlickAsyncImage(
-                                url = imageExtended.resolutions.original.url,
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .padding(start = 16.dp)
-                                    .clip(RoundedCornerShape(12.dp))
-                                    .size(
-                                        height = convertPixelsToDp(
-                                            context = context,
-                                            pixels = imageExtended.resolutions.original.height.div(
-                                                2f
-                                            )
-                                        ),
-                                        width = convertPixelsToDp(
-                                            context = context,
-                                            pixels = imageExtended.resolutions.original.width.div(2f)
-                                        )
-                                    ),
-                            )
-                        }
-                    }
-                )
-            }
-        }
+//        if (movieExtended.images.isNotEmpty()) {
+//            val context = LocalContext.current
+//
+//            Column(
+//                verticalArrangement = Arrangement.spacedBy(8.dp),
+//                modifier = Modifier.padding(bottom = 16.dp, top = 8.dp)
+//            ) {
+//                Text(
+//                    text = stringResource(R.string.images),
+//                    style = MaterialTheme.typography.titleMedium,
+//                    color = MaterialTheme.colorScheme.secondary,
+//                    modifier = Modifier.padding(start = 16.dp)
+//                )
+//
+//                LazyHorizontalStaggeredGrid(
+//                    rows = StaggeredGridCells.Adaptive(150.dp),
+//                    modifier = Modifier
+//                        .height(400.dp)
+//                        .padding(top = 8.dp),
+//                    verticalArrangement = Arrangement.spacedBy(16.dp),
+//                    content = {
+//                        items(movieExtended.images) { imageExtended ->
+//                            FlickAsyncImage(
+//                                url = imageExtended.resolutions.original.url,
+//                                contentDescription = null,
+//                                modifier = Modifier
+//                                    .padding(start = 16.dp)
+//                                    .clip(RoundedCornerShape(12.dp))
+//                                    .size(
+//                                        height = convertPixelsToDp(
+//                                            context = context,
+//                                            pixels = imageExtended.resolutions.original.height.div(
+//                                                2f
+//                                            )
+//                                        ),
+//                                        width = convertPixelsToDp(
+//                                            context = context,
+//                                            pixels = imageExtended.resolutions.original.width.div(2f)
+//                                        )
+//                                    ),
+//                            )
+//                        }
+//                    }
+//                )
+//            }
+//        }
     }
 }
 

@@ -35,7 +35,7 @@ fun MovieCard(
         ) {
             Box {
                 FlickSubcomposeAsyncImage(
-                    imagePath = movie.image.medium,
+                    imagePath = movie.backdropPath,
                     contentDescription = null,
                     modifier = Modifier.fillMaxWidth(),
                     size = 64.dp,
@@ -47,40 +47,40 @@ fun MovieCard(
                         .padding(8.dp)
                         .align(Alignment.TopStart)
                         .clip(RoundedCornerShape(12.dp)),
-                    color = MaterialTheme.colorScheme.secondaryContainer
+                    color = MaterialTheme.colorScheme.secondaryContainer,
                 ) {
                     Text(
-                        text = movie.rating.average.toString(),
+                        text = movie.voteAverage.toString(),
                         modifier = Modifier
                             .padding(
                                 start = 8.dp,
                                 top = 2.dp,
                                 end = 8.dp,
-                                bottom = 2.dp
+                                bottom = 2.dp,
                             ),
                         style = MaterialTheme.typography.labelLarge,
                         maxLines = 1,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                 }
             }
 
             Column(
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+                verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 Text(
-                    text = movie.name,
+                    text = movie.title,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Start,
                     color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier
+                    modifier = Modifier,
                 )
 
                 Text(
-                    text = movie.genres.take(2).joinToString(", "),
+                    text = movie.releaseDate,
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

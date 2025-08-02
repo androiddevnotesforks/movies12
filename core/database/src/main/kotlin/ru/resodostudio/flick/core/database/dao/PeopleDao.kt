@@ -18,7 +18,4 @@ interface PeopleDao {
 
     @Upsert
     suspend fun upsertPeople(people: List<PersonEntity>)
-
-    @Query("DELETE FROM people")
-    suspend fun deletePeople()
 }
