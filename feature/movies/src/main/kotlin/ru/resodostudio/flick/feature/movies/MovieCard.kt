@@ -1,7 +1,7 @@
-package ru.resodostudio.flick.core.ui
+package ru.resodostudio.flick.feature.movies
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,21 +24,27 @@ import ru.resodostudio.flick.core.designsystem.icon.filled.Theaters
 import ru.resodostudio.flick.core.model.data.Movie
 
 @Composable
-fun MovieCard(
+internal fun MovieCard(
     movie: Movie,
     onMovieClick: (Int) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Card(onClick = { onMovieClick(movie.id) }) {
+    Card(
+        onClick = { onMovieClick(movie.id) },
+        modifier = modifier,
+    ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Box {
+            BoxWithConstraints(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
                 FlickSubcomposeAsyncImage(
                     imagePath = movie.backdropPath,
                     contentDescription = null,
                     modifier = Modifier.fillMaxWidth(),
-                    size = 64.dp,
+                    size = maxWidth,
                     errorIcon = FlickIcons.Filled.Theaters,
                 )
 
@@ -50,7 +56,7 @@ fun MovieCard(
                     color = MaterialTheme.colorScheme.secondaryContainer,
                 ) {
                     Text(
-                        text = movie.voteAverage.toString(),
+                        text = movie.voteAverage.toString().take(4),
                         modifier = Modifier
                             .padding(
                                 start = 8.dp,
