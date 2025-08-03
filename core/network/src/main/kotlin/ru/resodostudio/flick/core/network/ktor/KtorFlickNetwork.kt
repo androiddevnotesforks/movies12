@@ -3,9 +3,9 @@ package ru.resodostudio.flick.core.network.ktor
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.resources.get
-import kotlinx.serialization.Serializable
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
 import ru.resodostudio.flick.core.network.model.NetworkMovie
+import ru.resodostudio.flick.core.network.model.NetworkPagedResult
 import ru.resodostudio.flick.core.network.model.NetworkPerson
 import ru.resodostudio.flick.core.network.resource.MovieResource
 import ru.resodostudio.flick.core.network.resource.PersonResource
@@ -33,9 +33,3 @@ class KtorFlickNetwork @Inject constructor(
         TODO("Not yet implemented")
     }
 }
-
-@Serializable
-data class NetworkPagedResult<T>(
-    val page: Int,
-    val results: T,
-)
