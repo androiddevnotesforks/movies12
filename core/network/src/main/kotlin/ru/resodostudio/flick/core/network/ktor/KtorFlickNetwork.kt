@@ -18,10 +18,10 @@ class KtorFlickNetwork @Inject constructor(
     private val httpClient: HttpClient,
 ) : FlickNetworkDataSource {
 
-    override suspend fun getMovies(page: Int): NetworkResult<List<NetworkMovie>> {
+    override suspend fun getMovies(page: Int): NetworkPagedResult<List<NetworkMovie>> {
         return httpClient
             .get(MovieResource.Popular(page = page))
-            .body<NetworkResult<List<NetworkMovie>>>()
+            .body<NetworkPagedResult<List<NetworkMovie>>>()
     }
 
     override suspend fun getMovieImages(id: Int, language: String): NetworkImagesResponse {
@@ -30,10 +30,10 @@ class KtorFlickNetwork @Inject constructor(
             .body<NetworkImagesResponse>()
     }
 
-    override suspend fun getPeople(page: Int): NetworkResult<List<NetworkPerson>> {
+    override suspend fun getPeople(page: Int): NetworkPagedResult<List<NetworkPerson>> {
         return httpClient
             .get(PersonResource.Popular(page = page))
-            .body<NetworkResult<List<NetworkPerson>>>()
+            .body<NetworkPagedResult<List<NetworkPerson>>>()
     }
 
     override suspend fun getPerson(id: Int): NetworkPerson {
@@ -42,7 +42,7 @@ class KtorFlickNetwork @Inject constructor(
 }
 
 @Serializable
-data class NetworkResult<T>(
+data class NetworkPagedResult<T>(
     val page: Int,
     val results: T,
 )
