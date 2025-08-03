@@ -6,26 +6,26 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import kotlinx.coroutines.flow.first
 import ru.resodostudio.core.data.model.asEntity
-import ru.resodostudio.flick.core.database.dao.PeopleDao
+import ru.resodostudio.flick.core.database.dao.MoviesDao
 import ru.resodostudio.flick.core.database.dao.RemoteKeysDao
-import ru.resodostudio.flick.core.database.model.PersonEntity
+import ru.resodostudio.flick.core.database.model.MovieEntity
 import ru.resodostudio.flick.core.database.model.RemoteKeyEntity
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
-internal class PeopleRemoteMediator @Inject constructor(
+internal class MoviesRemoteMediator @Inject constructor(
     private val network: FlickNetworkDataSource,
-    private val peopleDao: PeopleDao,
+    private val moviesDao: MoviesDao,
     private val remoteKeysDao: RemoteKeysDao,
-) : RemoteMediator<Int, PersonEntity>() {
+) : RemoteMediator<Int, MovieEntity>() {
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, PersonEntity>,
+        state: PagingState<Int, MovieEntity>,
     ): MediatorResult {
         return runCatching {
-            val query = "person/popular"
+            val query = "movie/popular"
             val loadKey = when (loadType) {
                 LoadType.REFRESH -> 1
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
@@ -38,7 +38,7 @@ internal class PeopleRemoteMediator @Inject constructor(
                 }
             }
 
-            val networkPeople = network.getPeople(
+            val networkMovies = network.getMovies(
                 page = loadKey,
             )
 
@@ -46,7 +46,7 @@ internal class PeopleRemoteMediator @Inject constructor(
                 remoteKeysDao.deleteRemoteKey(query)
             }
 
-            val nextKey = (networkPeople.page + 1).coerceIn(1, 500)
+            val nextKey = (networkMovies.page + 1).coerceIn(1, 500)
 
             remoteKeysDao.upsertRemoteKey(
                 RemoteKeyEntity(
@@ -55,8 +55,8 @@ internal class PeopleRemoteMediator @Inject constructor(
                 )
             )
 
-            val peopleEntities = networkPeople.results.map { it.asEntity() }
-            peopleDao.upsertPeople(peopleEntities)
+            val movieEntities = networkMovies.results.map { it.asEntity() }
+            moviesDao.upsertMovies(movieEntities)
 
             MediatorResult.Success(endOfPaginationReached = nextKey == 500)
         }.getOrElse { MediatorResult.Error(it) }

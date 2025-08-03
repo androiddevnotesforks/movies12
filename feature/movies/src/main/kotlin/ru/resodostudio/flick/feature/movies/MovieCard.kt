@@ -1,20 +1,20 @@
-package ru.resodostudio.flick.core.ui
+package ru.resodostudio.flick.feature.movies
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -24,22 +24,32 @@ import ru.resodostudio.flick.core.designsystem.icon.filled.Theaters
 import ru.resodostudio.flick.core.model.data.Movie
 
 @Composable
-fun MovieCard(
+internal fun MovieCard(
     movie: Movie,
     onMovieClick: (Int) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Card(onClick = { onMovieClick(movie.id) }) {
+    OutlinedCard(
+        onClick = { onMovieClick(movie.id) },
+        modifier = modifier,
+        shape = MaterialTheme.shapes.large,
+    ) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
         ) {
-            Box {
+            BoxWithConstraints(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
                 FlickSubcomposeAsyncImage(
-                    imagePath = movie.image.medium,
+                    imagePath = movie.posterPath,
                     contentDescription = null,
-                    modifier = Modifier.fillMaxWidth(),
-                    size = 64.dp,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(0.667f),
+                    size = maxWidth,
                     errorIcon = FlickIcons.Filled.Theaters,
+                    shape = MaterialTheme.shapes.large,
                 )
 
                 Surface(
@@ -47,43 +57,42 @@ fun MovieCard(
                         .padding(8.dp)
                         .align(Alignment.TopStart)
                         .clip(RoundedCornerShape(12.dp)),
-                    color = MaterialTheme.colorScheme.secondaryContainer
+                    color = MaterialTheme.colorScheme.secondaryContainer,
                 ) {
                     Text(
-                        text = movie.rating.average.toString(),
+                        text = "%.1f".format(movie.voteAverage),
                         modifier = Modifier
                             .padding(
                                 start = 8.dp,
-                                top = 2.dp,
                                 end = 8.dp,
-                                bottom = 2.dp
+                                bottom = 2.dp,
                             ),
                         style = MaterialTheme.typography.labelLarge,
                         maxLines = 1,
-                        fontWeight = FontWeight.Bold
                     )
                 }
             }
 
             Column(
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(12.dp),
             ) {
                 Text(
-                    text = movie.name,
-                    maxLines = 1,
+                    text = movie.title,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.titleMedium,
-                    textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier
                 )
 
                 Text(
-                    text = movie.genres.take(2).joinToString(", "),
-                    style = MaterialTheme.typography.bodyMedium,
+                    text = movie.releaseDate.take(4),
+                    style = MaterialTheme.typography.labelLarge,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
