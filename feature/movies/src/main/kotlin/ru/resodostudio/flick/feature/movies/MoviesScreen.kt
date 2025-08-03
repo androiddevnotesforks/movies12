@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyGridScope
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridScope
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
 import androidx.compose.material3.ContainedLoadingIndicator
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
@@ -46,9 +46,9 @@ private fun MoviesScreen(
         isRefreshing = isRefreshing,
         onRefresh = { moviesState.refresh() },
     ) {
-        LazyVerticalGrid(
-            columns = GridCells.Adaptive(150.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+        LazyVerticalStaggeredGrid(
+            columns = StaggeredGridCells.Adaptive(160.dp),
+            verticalItemSpacing = 16.dp,
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(16.dp),
             modifier = Modifier.fillMaxSize(),
@@ -62,7 +62,7 @@ private fun MoviesScreen(
 }
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
-private fun LazyGridScope.movies(
+private fun LazyStaggeredGridScope.movies(
     moviesState: LazyPagingItems<Movie>,
     onMovieClick: (Int) -> Unit,
 ) {
@@ -81,7 +81,7 @@ private fun LazyGridScope.movies(
     }
     if (moviesState.loadState.append is LoadState.Loading) {
         item(
-            span = { GridItemSpan(maxLineSpan) },
+            span = StaggeredGridItemSpan.FullLine,
             contentType = { "Loading" },
         ) {
             ContainedLoadingIndicator(
