@@ -7,15 +7,14 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -30,13 +29,14 @@ internal fun MovieCard(
     onMovieClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Card(
+    OutlinedCard(
         onClick = { onMovieClick(movie.id) },
         modifier = modifier,
+        shape = MaterialTheme.shapes.large,
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
         ) {
             BoxWithConstraints(
                 modifier = Modifier.fillMaxWidth(),
@@ -49,6 +49,7 @@ internal fun MovieCard(
                         .aspectRatio(0.667f),
                     size = maxWidth,
                     errorIcon = FlickIcons.Filled.Theaters,
+                    shape = MaterialTheme.shapes.large,
                 )
 
                 Surface(
@@ -59,40 +60,39 @@ internal fun MovieCard(
                     color = MaterialTheme.colorScheme.secondaryContainer,
                 ) {
                     Text(
-                        text = movie.voteAverage.toString().take(4),
+                        text = "%.1f".format(movie.voteAverage),
                         modifier = Modifier
                             .padding(
                                 start = 8.dp,
-                                top = 2.dp,
                                 end = 8.dp,
                                 bottom = 2.dp,
                             ),
                         style = MaterialTheme.typography.labelLarge,
                         maxLines = 1,
-                        fontWeight = FontWeight.Bold,
                     )
                 }
             }
 
             Column(
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(12.dp),
             ) {
                 Text(
                     text = movie.title,
-                    maxLines = 1,
+                    maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.titleMedium,
-                    textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier,
                 )
 
                 Text(
-                    text = movie.releaseDate,
-                    style = MaterialTheme.typography.bodyMedium,
+                    text = movie.releaseDate.take(4),
+                    style = MaterialTheme.typography.labelLarge,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
