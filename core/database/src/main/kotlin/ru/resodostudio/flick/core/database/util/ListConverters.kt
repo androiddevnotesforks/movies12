@@ -14,3 +14,16 @@ internal class ListIntConverter {
         return value.split(", ").map { it.toInt() }
     }
 }
+
+internal class ListStringConverter {
+
+    @TypeConverter
+    fun listToString(list: List<String>): String {
+        return list.joinToString(", ")
+    }
+
+    @TypeConverter
+    fun stringToList(value: String): List<String> {
+        return value.split(", ").map { it }
+    }
+}

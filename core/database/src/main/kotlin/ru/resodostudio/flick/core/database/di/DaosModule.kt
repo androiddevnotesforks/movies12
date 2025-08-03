@@ -8,6 +8,7 @@ import ru.resodostudio.flick.core.database.FlickDatabase
 import ru.resodostudio.flick.core.database.dao.MoviesDao
 import ru.resodostudio.flick.core.database.dao.PeopleDao
 import ru.resodostudio.flick.core.database.dao.RemoteKeysDao
+import ru.resodostudio.flick.core.database.dao.TvShowsDao
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -28,4 +29,8 @@ internal object DaosModule {
         database: FlickDatabase,
     ): MoviesDao = database.moviesDao()
 
+    @Provides
+    fun providesTvShowsDao(
+        database: FlickDatabase,
+    ): TvShowsDao = database.tvShowsDao()
 }
