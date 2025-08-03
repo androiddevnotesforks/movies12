@@ -12,8 +12,6 @@ import ru.resodostudio.core.data.repository.UserDataRepository
 import ru.resodostudio.core.data.repository.offline.OfflineUserDataRepository
 import ru.resodostudio.core.data.util.ConnectivityManagerNetworkMonitor
 import ru.resodostudio.core.data.util.NetworkMonitor
-import ru.resodostudio.flick.core.network.FlickNetworkDataSource
-import ru.resodostudio.flick.core.network.ktor.KtorFlickNetwork
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -38,9 +36,4 @@ internal abstract class DataModule {
     internal abstract fun bindsNetworkMonitor(
         networkMonitor: ConnectivityManagerNetworkMonitor,
     ): NetworkMonitor
-
-    @Binds
-    internal abstract fun bindKtor(
-        ktor: KtorFlickNetwork,
-    ): FlickNetworkDataSource
 }

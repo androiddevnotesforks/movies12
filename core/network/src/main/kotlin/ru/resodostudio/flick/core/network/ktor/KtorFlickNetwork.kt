@@ -13,7 +13,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class KtorFlickNetwork @Inject constructor(
+internal class KtorFlickNetwork @Inject constructor(
     private val httpClient: HttpClient,
 ) : FlickNetworkDataSource {
 
