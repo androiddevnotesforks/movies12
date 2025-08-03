@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import ru.resodostudio.core.data.repository.UserDataRepository
-import ru.resodostudio.flick.core.model.data.DarkThemeConfig
-import ru.resodostudio.flick.core.model.data.UserData
+import ru.resodostudio.flick.core.model.DarkThemeConfig
+import ru.resodostudio.flick.core.model.UserData
 import javax.inject.Inject
 
 @HiltViewModel

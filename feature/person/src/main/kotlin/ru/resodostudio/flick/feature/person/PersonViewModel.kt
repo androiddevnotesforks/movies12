@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import ru.resodostudio.core.data.repository.PeopleRepository
-import ru.resodostudio.flick.core.model.data.Person
+import ru.resodostudio.flick.core.model.Person
 import ru.resodostudio.flick.feature.person.navigation.PersonArgs
 import javax.inject.Inject
 

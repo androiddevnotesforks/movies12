@@ -1,4 +1,4 @@
-package ru.resodostudio.flick.core.model.data
+package ru.resodostudio.flick.core.model
 
 data class Movie(
     val id: Int,

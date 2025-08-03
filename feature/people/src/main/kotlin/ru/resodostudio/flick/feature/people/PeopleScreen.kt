@@ -22,7 +22,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import ru.resodostudio.flick.core.model.data.Person
+import ru.resodostudio.flick.core.model.Person
 
 @Composable
 internal fun PeopleRoute(

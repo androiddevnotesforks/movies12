@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 import ru.resodostudio.core.data.paging.MoviesRemoteMediator
 import ru.resodostudio.flick.core.database.dao.MoviesDao
 import ru.resodostudio.flick.core.database.model.asExternalModel
-import ru.resodostudio.flick.core.model.data.Movie
+import ru.resodostudio.flick.core.model.Movie
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)

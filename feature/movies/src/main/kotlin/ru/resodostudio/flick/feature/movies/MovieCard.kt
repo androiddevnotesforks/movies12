@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import ru.resodostudio.flick.core.designsystem.component.FlickSubcomposeAsyncImage
 import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
 import ru.resodostudio.flick.core.designsystem.icon.filled.Theaters
-import ru.resodostudio.flick.core.model.data.Movie
+import ru.resodostudio.flick.core.model.Movie
 
 @Composable
 internal fun MovieCard(

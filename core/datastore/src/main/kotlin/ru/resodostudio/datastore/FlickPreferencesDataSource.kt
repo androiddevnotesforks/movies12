@@ -2,8 +2,8 @@ package ru.resodostudio.datastore
 
 import androidx.datastore.core.DataStore
 import kotlinx.coroutines.flow.map
-import ru.resodostudio.flick.core.model.data.DarkThemeConfig
-import ru.resodostudio.flick.core.model.data.UserData
+import ru.resodostudio.flick.core.model.DarkThemeConfig
+import ru.resodostudio.flick.core.model.UserData
 import ru.resodostudios.flick.core.datastore.DarkThemeConfigProto
 import ru.resodostudios.flick.core.datastore.UserPreferences
 import ru.resodostudios.flick.core.datastore.copy
