@@ -3,6 +3,7 @@ package ru.resodostudio.flick.core.network
 import ru.resodostudio.flick.core.network.model.NetworkMovie
 import ru.resodostudio.flick.core.network.model.NetworkPagedResult
 import ru.resodostudio.flick.core.network.model.NetworkPerson
+import ru.resodostudio.flick.core.network.model.NetworkTvShow
 
 interface FlickNetworkDataSource {
 
@@ -11,4 +12,6 @@ interface FlickNetworkDataSource {
     suspend fun getPeople(page: Int): NetworkPagedResult<List<NetworkPerson>>
 
     suspend fun getPerson(id: Int): NetworkPerson
+
+    suspend fun getTvShows(page: Int): NetworkPagedResult<List<NetworkTvShow>>
 }

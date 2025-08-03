@@ -7,8 +7,10 @@ import ru.resodostudio.flick.core.network.FlickNetworkDataSource
 import ru.resodostudio.flick.core.network.model.NetworkMovie
 import ru.resodostudio.flick.core.network.model.NetworkPagedResult
 import ru.resodostudio.flick.core.network.model.NetworkPerson
+import ru.resodostudio.flick.core.network.model.NetworkTvShow
 import ru.resodostudio.flick.core.network.resource.MovieResource
 import ru.resodostudio.flick.core.network.resource.PersonResource
+import ru.resodostudio.flick.core.network.resource.TvShowResource
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -31,5 +33,11 @@ internal class KtorFlickNetwork @Inject constructor(
 
     override suspend fun getPerson(id: Int): NetworkPerson {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getTvShows(page: Int): NetworkPagedResult<List<NetworkTvShow>> {
+        return httpClient
+            .get(TvShowResource.Popular(page = page))
+            .body<NetworkPagedResult<List<NetworkTvShow>>>()
     }
 }
