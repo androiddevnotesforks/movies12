@@ -10,16 +10,4 @@ internal class MovieResource() {
         val parent: MovieResource = MovieResource(),
         val page: Int = 1,
     )
-
-    @Resource("{id}")
-    internal class Id(
-        val parent: MovieResource = MovieResource(),
-        val id: Int,
-    ) {
-        @Resource("images")
-        internal class Images(
-            val parent: Id,
-            val includeImageLanguage: String,
-        )
-    }
 }

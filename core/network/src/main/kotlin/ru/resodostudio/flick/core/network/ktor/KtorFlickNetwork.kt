@@ -5,7 +5,6 @@ import io.ktor.client.call.body
 import io.ktor.client.plugins.resources.get
 import kotlinx.serialization.Serializable
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
-import ru.resodostudio.flick.core.network.model.NetworkImagesResponse
 import ru.resodostudio.flick.core.network.model.NetworkMovie
 import ru.resodostudio.flick.core.network.model.NetworkPerson
 import ru.resodostudio.flick.core.network.resource.MovieResource
@@ -22,12 +21,6 @@ class KtorFlickNetwork @Inject constructor(
         return httpClient
             .get(MovieResource.Popular(page = page))
             .body<NetworkPagedResult<List<NetworkMovie>>>()
-    }
-
-    override suspend fun getMovieImages(id: Int, language: String): NetworkImagesResponse {
-        return httpClient
-            .get(MovieResource.Id.Images(MovieResource.Id(id = id), language))
-            .body<NetworkImagesResponse>()
     }
 
     override suspend fun getPeople(page: Int): NetworkPagedResult<List<NetworkPerson>> {
