@@ -9,7 +9,7 @@ import ru.resodostudio.core.data.repository.MoviesRepositoryImpl
 import ru.resodostudio.core.data.repository.PeopleRepository
 import ru.resodostudio.core.data.repository.PeopleRepositoryImpl
 import ru.resodostudio.core.data.repository.UserDataRepository
-import ru.resodostudio.core.data.repository.offline.OfflineUserDataRepository
+import ru.resodostudio.core.data.repository.UserDataRepositoryImpl
 import ru.resodostudio.core.data.util.ConnectivityManagerNetworkMonitor
 import ru.resodostudio.core.data.util.NetworkMonitor
 
@@ -19,21 +19,21 @@ internal abstract class DataModule {
 
     @Binds
     internal abstract fun bindsMoviesRepository(
-        moviesRepository: MoviesRepositoryImpl,
+        impl: MoviesRepositoryImpl,
     ) : MoviesRepository
 
     @Binds
     internal abstract fun bindsPeopleRepository(
-        peopleRepository: PeopleRepositoryImpl,
+        impl: PeopleRepositoryImpl,
     ): PeopleRepository
 
     @Binds
     internal abstract fun bindsUserDataRepository(
-        userDataRepositoryImpl: OfflineUserDataRepository
+        impl: UserDataRepositoryImpl
     ): UserDataRepository
 
     @Binds
     internal abstract fun bindsNetworkMonitor(
-        networkMonitor: ConnectivityManagerNetworkMonitor,
+        impl: ConnectivityManagerNetworkMonitor,
     ): NetworkMonitor
 }
