@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import ru.resodostudio.flick.core.designsystem.component.FlickSubcomposeAsyncImage
 import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
 import ru.resodostudio.flick.core.designsystem.icon.filled.Face
-import ru.resodostudio.flick.core.model.data.Person
+import ru.resodostudio.flick.core.model.Person
 
 @Composable
 internal fun PersonCard(

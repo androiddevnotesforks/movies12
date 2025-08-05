@@ -15,13 +15,15 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import ru.resodostudio.core.data.util.NetworkMonitor
-import ru.resodostudio.flick.feature.home.navigation.homeRoute
+import ru.resodostudio.flick.feature.home.navigation.HOME_ROUTE
 import ru.resodostudio.flick.feature.home.navigation.navigateToHomeGraph
-import ru.resodostudio.flick.feature.movies.navigation.moviesRoute
+import ru.resodostudio.flick.feature.movies.navigation.MOVIES_ROUTE
 import ru.resodostudio.flick.feature.movies.navigation.navigateToMoviesGraph
+import ru.resodostudio.flick.feature.people.navigation.PEOPLE_ROUTE
 import ru.resodostudio.flick.feature.people.navigation.navigateToPeople
-import ru.resodostudio.flick.feature.people.navigation.peopleRoute
 import ru.resodostudio.flick.feature.settings.navigation.navigateToSettings
+import ru.resodostudio.flick.feature.tvshows.navigation.TV_SHOWS_ROUTE
+import ru.resodostudio.flick.feature.tvshows.navigation.navigateToTvShowsGraph
 import ru.resodostudio.flick.navigation.TopLevelDestination
 import ru.resodostudio.flick.navigation.TopLevelDestination.HOME
 import ru.resodostudio.flick.navigation.TopLevelDestination.MOVIES
@@ -59,9 +61,10 @@ class FlickAppState(
 
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
-            homeRoute -> HOME
-            moviesRoute -> MOVIES
-            peopleRoute -> PEOPLE
+            HOME_ROUTE -> HOME
+            MOVIES_ROUTE -> MOVIES
+            PEOPLE_ROUTE -> PEOPLE
+            TV_SHOWS_ROUTE -> TV_SHOWS
             else -> null
         }
 
@@ -87,13 +90,9 @@ class FlickAppState(
         when (topLevelDestination) {
             HOME -> navController.navigateToHomeGraph(topLevelNavOptions)
             MOVIES -> navController.navigateToMoviesGraph(topLevelNavOptions)
-            TV_SHOWS -> TODO()
+            TV_SHOWS -> navController.navigateToTvShowsGraph(topLevelNavOptions)
             PEOPLE -> navController.navigateToPeople(topLevelNavOptions)
         }
-    }
-
-    fun navigateToSearch() {
-        //navController.navigateToSearch()
     }
 
     fun navigateToSettings() {

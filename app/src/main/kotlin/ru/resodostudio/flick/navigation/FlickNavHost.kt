@@ -11,6 +11,7 @@ import ru.resodostudio.flick.feature.people.navigation.peopleGraph
 import ru.resodostudio.flick.feature.person.navigation.navigateToPerson
 import ru.resodostudio.flick.feature.person.navigation.personScreen
 import ru.resodostudio.flick.feature.settings.navigation.settingsScreen
+import ru.resodostudio.flick.feature.tvshows.navigation.tvShowsGraph
 import ru.resodostudio.flick.ui.FlickAppState
 
 @Composable
@@ -40,6 +41,14 @@ fun FlickNavHost(
                     }
                 )
             }
+        )
+        tvShowsGraph(
+            onTvShowClick = { tvShowId ->
+
+            },
+            nestedGraphs = {
+
+            },
         )
         peopleGraph(
             onPersonClick = { personId ->

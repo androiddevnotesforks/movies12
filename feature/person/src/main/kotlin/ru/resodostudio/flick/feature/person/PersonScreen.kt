@@ -30,7 +30,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ru.resodostudio.flick.core.common.util.formatDate
 import ru.resodostudio.flick.core.designsystem.component.FlickAsyncImage
-import ru.resodostudio.flick.core.model.data.Person
+import ru.resodostudio.flick.core.model.Person
 import ru.resodostudio.flick.core.ui.EmptyState
 import ru.resodostudio.flick.core.ui.LoadingState
 import ru.resodostudio.flick.core.ui.R.raw.anim_error_2

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 import ru.resodostudio.core.data.paging.PeopleRemoteMediator
 import ru.resodostudio.flick.core.database.dao.PeopleDao
 import ru.resodostudio.flick.core.database.model.asExternalModel
-import ru.resodostudio.flick.core.model.data.Person
+import ru.resodostudio.flick.core.model.Person
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)

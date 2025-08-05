@@ -22,7 +22,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import ru.resodostudio.flick.core.model.data.Movie
+import ru.resodostudio.flick.core.model.Movie
 
 @Composable
 internal fun MoviesRoute(

@@ -45,6 +45,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.feature.tvShows)
     implementation(projects.feature.home)
     implementation(projects.feature.movies)
     implementation(projects.feature.people)

@@ -30,7 +30,7 @@ import ru.resodostudio.flick.core.designsystem.component.FlickLargeTopAppBar
 import ru.resodostudio.flick.core.designsystem.icon.FlickIcons
 import ru.resodostudio.flick.core.designsystem.icon.rounded.ArrowBack
 import ru.resodostudio.flick.core.designsystem.theme.supportsDynamicTheming
-import ru.resodostudio.flick.core.model.data.DarkThemeConfig
+import ru.resodostudio.flick.core.model.DarkThemeConfig
 import ru.resodostudio.flick.core.ui.LoadingState
 
 @Composable

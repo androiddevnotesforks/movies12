@@ -8,12 +8,12 @@ import ru.resodostudio.core.data.repository.MoviesRepository
 import ru.resodostudio.core.data.repository.MoviesRepositoryImpl
 import ru.resodostudio.core.data.repository.PeopleRepository
 import ru.resodostudio.core.data.repository.PeopleRepositoryImpl
+import ru.resodostudio.core.data.repository.TvShowsRepository
+import ru.resodostudio.core.data.repository.TvShowsRepositoryImpl
 import ru.resodostudio.core.data.repository.UserDataRepository
-import ru.resodostudio.core.data.repository.offline.OfflineUserDataRepository
+import ru.resodostudio.core.data.repository.UserDataRepositoryImpl
 import ru.resodostudio.core.data.util.ConnectivityManagerNetworkMonitor
 import ru.resodostudio.core.data.util.NetworkMonitor
-import ru.resodostudio.flick.core.network.FlickNetworkDataSource
-import ru.resodostudio.flick.core.network.ktor.KtorFlickNetwork
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -21,26 +21,26 @@ internal abstract class DataModule {
 
     @Binds
     internal abstract fun bindsMoviesRepository(
-        moviesRepository: MoviesRepositoryImpl,
-    ) : MoviesRepository
+        impl: MoviesRepositoryImpl,
+    ): MoviesRepository
+
+    @Binds
+    internal abstract fun bindsTvShowsRepository(
+        impl: TvShowsRepositoryImpl,
+    ): TvShowsRepository
 
     @Binds
     internal abstract fun bindsPeopleRepository(
-        peopleRepository: PeopleRepositoryImpl,
+        impl: PeopleRepositoryImpl,
     ): PeopleRepository
 
     @Binds
     internal abstract fun bindsUserDataRepository(
-        userDataRepositoryImpl: OfflineUserDataRepository
+        impl: UserDataRepositoryImpl,
     ): UserDataRepository
 
     @Binds
     internal abstract fun bindsNetworkMonitor(
-        networkMonitor: ConnectivityManagerNetworkMonitor,
+        impl: ConnectivityManagerNetworkMonitor,
     ): NetworkMonitor
-
-    @Binds
-    internal abstract fun bindKtor(
-        ktor: KtorFlickNetwork,
-    ): FlickNetworkDataSource
 }

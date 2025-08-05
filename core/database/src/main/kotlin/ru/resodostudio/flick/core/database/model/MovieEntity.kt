@@ -3,7 +3,7 @@ package ru.resodostudio.flick.core.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ru.resodostudio.flick.core.model.data.Movie
+import ru.resodostudio.flick.core.model.Movie
 
 @Entity(
     tableName = "movies",

@@ -7,7 +7,7 @@ import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import ru.resodostudio.core.data.repository.MoviesRepository
-import ru.resodostudio.flick.core.model.data.Movie
+import ru.resodostudio.flick.core.model.Movie
 import javax.inject.Inject
 
 @HiltViewModel
