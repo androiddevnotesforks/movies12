@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import ru.resodostudio.flick.feature.tvshows.MoviesRoute
+import ru.resodostudio.flick.feature.tvshows.TvShowsRoute
 
 const val TV_SHOWS_GRAPH_ROUTE_PATTERN = "tv_shows_graph"
 const val TV_SHOWS_ROUTE = "tv_shows_route"
@@ -23,7 +23,9 @@ fun NavGraphBuilder.tvShowsGraph(
         startDestination = TV_SHOWS_ROUTE,
     ) {
         composable(route = TV_SHOWS_ROUTE) {
-
+            TvShowsRoute(
+                onTvShowClick = onTvShowClick,
+            )
         }
         nestedGraphs()
     }
