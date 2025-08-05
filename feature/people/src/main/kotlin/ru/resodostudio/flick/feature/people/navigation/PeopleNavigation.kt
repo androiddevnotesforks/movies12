@@ -8,10 +8,10 @@ import androidx.navigation.navigation
 import ru.resodostudio.flick.feature.people.PeopleRoute
 
 const val PEOPLE_GRAPH_ROUTE_PATTERN = "people_graph"
-const val peopleRoute = "people_route"
+const val PEOPLE_ROUTE = "people_route"
 
 fun NavController.navigateToPeople(navOptions: NavOptions? = null) {
-    this.navigate(peopleRoute, navOptions)
+    this.navigate(PEOPLE_ROUTE, navOptions)
 }
 
 fun NavGraphBuilder.peopleGraph(
@@ -20,9 +20,9 @@ fun NavGraphBuilder.peopleGraph(
 ) {
     navigation(
         route = PEOPLE_GRAPH_ROUTE_PATTERN,
-        startDestination = peopleRoute,
+        startDestination = PEOPLE_ROUTE,
     ) {
-        composable(route = peopleRoute) {
+        composable(route = PEOPLE_ROUTE) {
             PeopleRoute(onPersonClick = onPersonClick)
         }
         nestedGraphs()

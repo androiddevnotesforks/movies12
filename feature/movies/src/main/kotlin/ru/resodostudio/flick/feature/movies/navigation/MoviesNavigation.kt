@@ -8,7 +8,7 @@ import androidx.navigation.navigation
 import ru.resodostudio.flick.feature.movies.MoviesRoute
 
 const val MOVIES_GRAPH_ROUTE_PATTERN = "movies_graph"
-const val moviesRoute = "movies_route"
+const val MOVIES_ROUTE = "movies_route"
 
 fun NavController.navigateToMoviesGraph(navOptions: NavOptions? = null) {
     this.navigate(MOVIES_GRAPH_ROUTE_PATTERN, navOptions)
@@ -20,9 +20,9 @@ fun NavGraphBuilder.moviesGraph(
 ) {
     navigation(
         route = MOVIES_GRAPH_ROUTE_PATTERN,
-        startDestination = moviesRoute,
+        startDestination = MOVIES_ROUTE,
     ) {
-        composable(route = moviesRoute) {
+        composable(route = MOVIES_ROUTE) {
             MoviesRoute(onMovieClick = onMovieClick)
         }
         nestedGraphs()
