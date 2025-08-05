@@ -23,7 +23,6 @@ import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import ru.resodostudio.flick.core.common.BuildConfig.API_KEY
-import ru.resodostudio.flick.core.common.BuildConfig.API_URL
 import javax.inject.Singleton
 
 @Module
@@ -62,7 +61,7 @@ object NetworkModule {
             }
             install(Resources)
             defaultRequest {
-                url(API_URL)
+                url(BASE_URL)
                 contentType(ContentType.Application.Json)
                 accept(ContentType.Application.Json)
             }
@@ -70,4 +69,5 @@ object NetworkModule {
     }
 }
 
+private const val BASE_URL = "https://api.themoviedb.org/3/"
 private const val NETWORK_TIME_OUT = 5_000L

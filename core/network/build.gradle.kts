@@ -35,14 +35,6 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
 }
 
-val apiUrl = providers.fileContents(
-    isolated.rootProject.projectDirectory.file("local.properties")
-).asText.map { text ->
-    val properties = Properties()
-    properties.load(StringReader(text))
-    properties["API_URL"] as String?
-}.orElse("123")
-
 val apiKey = providers.fileContents(
     isolated.rootProject.projectDirectory.file("local.properties")
 ).asText.map { text ->
@@ -53,9 +45,6 @@ val apiKey = providers.fileContents(
 
 androidComponents {
     onVariants {
-        it.buildConfigFields?.put("API_URL", apiUrl.map { value ->
-            BuildConfigField(type = "String", value = """"$value"""", comment = null)
-        })
         it.buildConfigFields?.put("API_KEY", apiKey.map { value ->
             BuildConfigField(type = "String", value = """"$value"""", comment = null)
         })
