@@ -22,6 +22,7 @@ import ru.resodostudio.flick.feature.movies.navigation.navigateToMoviesGraph
 import ru.resodostudio.flick.feature.people.navigation.navigateToPeople
 import ru.resodostudio.flick.feature.people.navigation.peopleRoute
 import ru.resodostudio.flick.feature.settings.navigation.navigateToSettings
+import ru.resodostudio.flick.feature.tvshows.navigation.navigateToTvShowsGraph
 import ru.resodostudio.flick.navigation.TopLevelDestination
 import ru.resodostudio.flick.navigation.TopLevelDestination.HOME
 import ru.resodostudio.flick.navigation.TopLevelDestination.MOVIES
@@ -87,13 +88,9 @@ class FlickAppState(
         when (topLevelDestination) {
             HOME -> navController.navigateToHomeGraph(topLevelNavOptions)
             MOVIES -> navController.navigateToMoviesGraph(topLevelNavOptions)
-            TV_SHOWS -> TODO()
+            TV_SHOWS -> navController.navigateToTvShowsGraph(topLevelNavOptions)
             PEOPLE -> navController.navigateToPeople(topLevelNavOptions)
         }
-    }
-
-    fun navigateToSearch() {
-        //navController.navigateToSearch()
     }
 
     fun navigateToSettings() {

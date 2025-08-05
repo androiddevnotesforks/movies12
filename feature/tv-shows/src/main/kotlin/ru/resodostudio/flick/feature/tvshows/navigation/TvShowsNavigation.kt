@@ -8,7 +8,7 @@ import androidx.navigation.navigation
 import ru.resodostudio.flick.feature.tvshows.MoviesRoute
 
 const val TV_SHOWS_GRAPH_ROUTE_PATTERN = "tv_shows_graph"
-const val TV_SHOWS_ROUTE = "movies_route"
+const val TV_SHOWS_ROUTE = "tv_shows_route"
 
 fun NavController.navigateToTvShowsGraph(navOptions: NavOptions? = null) {
     this.navigate(TV_SHOWS_GRAPH_ROUTE_PATTERN, navOptions)
