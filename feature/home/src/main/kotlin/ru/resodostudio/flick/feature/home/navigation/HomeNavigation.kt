@@ -14,7 +14,7 @@ fun NavController.navigateToHomeGraph(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.homeGraph(
-    nestedGraphs: NavGraphBuilder.() -> Unit
+    nestedGraphs: NavGraphBuilder.() -> Unit,
 ) {
     navigation(
         route = HOME_GRAPH_ROUTE_PATTERN,
