@@ -21,13 +21,15 @@ import ru.resodostudio.flick.feature.movies.navigation.MOVIES_ROUTE
 import ru.resodostudio.flick.feature.movies.navigation.navigateToMoviesGraph
 import ru.resodostudio.flick.feature.people.navigation.PEOPLE_ROUTE
 import ru.resodostudio.flick.feature.people.navigation.navigateToPeople
-import ru.resodostudio.flick.feature.settings.navigation.navigateToSettings
+import ru.resodostudio.flick.feature.profile.navigation.PROFILE_ROUTE
+import ru.resodostudio.flick.feature.profile.navigation.navigateToProfileGraph
 import ru.resodostudio.flick.feature.tvshows.navigation.TV_SHOWS_ROUTE
 import ru.resodostudio.flick.feature.tvshows.navigation.navigateToTvShowsGraph
 import ru.resodostudio.flick.navigation.TopLevelDestination
 import ru.resodostudio.flick.navigation.TopLevelDestination.HOME
 import ru.resodostudio.flick.navigation.TopLevelDestination.MOVIES
 import ru.resodostudio.flick.navigation.TopLevelDestination.PEOPLE
+import ru.resodostudio.flick.navigation.TopLevelDestination.PROFILE
 import ru.resodostudio.flick.navigation.TopLevelDestination.TV_SHOWS
 
 @Composable
@@ -65,6 +67,7 @@ class FlickAppState(
             MOVIES_ROUTE -> MOVIES
             PEOPLE_ROUTE -> PEOPLE
             TV_SHOWS_ROUTE -> TV_SHOWS
+            PROFILE_ROUTE -> PROFILE
             else -> null
         }
 
@@ -92,10 +95,7 @@ class FlickAppState(
             MOVIES -> navController.navigateToMoviesGraph(topLevelNavOptions)
             TV_SHOWS -> navController.navigateToTvShowsGraph(topLevelNavOptions)
             PEOPLE -> navController.navigateToPeople(topLevelNavOptions)
+            PROFILE -> navController.navigateToProfileGraph(topLevelNavOptions)
         }
-    }
-
-    fun navigateToSettings() {
-        navController.navigateToSettings()
     }
 }

@@ -51,10 +51,12 @@ dependencies {
     implementation(projects.feature.people)
     implementation(projects.feature.movie)
     implementation(projects.feature.person)
+    implementation(projects.feature.profile)
     implementation(projects.feature.settings)
 
     implementation(projects.core.data)
     implementation(projects.core.designsystem)
+    implementation(projects.core.locales)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3.adaptive)

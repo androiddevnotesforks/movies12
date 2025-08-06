@@ -10,7 +10,7 @@ import ru.resodostudio.flick.feature.movies.navigation.moviesGraph
 import ru.resodostudio.flick.feature.people.navigation.peopleGraph
 import ru.resodostudio.flick.feature.person.navigation.navigateToPerson
 import ru.resodostudio.flick.feature.person.navigation.personScreen
-import ru.resodostudio.flick.feature.settings.navigation.settingsScreen
+import ru.resodostudio.flick.feature.profile.navigation.profileGraph
 import ru.resodostudio.flick.feature.tvshows.navigation.tvShowsGraph
 import ru.resodostudio.flick.ui.FlickAppState
 
@@ -22,12 +22,12 @@ fun FlickNavHost(
     val navController = appState.navController
     NavHost(
         navController = navController,
-        startDestination = startDestination
+        startDestination = startDestination,
     ) {
         homeGraph(
             nestedGraphs = {
 
-            }
+            },
         )
         moviesGraph(
             onMovieClick = { movieId ->
@@ -38,9 +38,9 @@ fun FlickNavHost(
                     onBackClick = navController::popBackStack,
                     onPersonClick = { personId ->
                         navController.navigateToPerson(personId)
-                    }
+                    },
                 )
-            }
+            },
         )
         tvShowsGraph(
             onTvShowClick = { tvShowId ->
@@ -59,12 +59,14 @@ fun FlickNavHost(
                     onBackClick = navController::popBackStack,
                     onMovieClick = { movieId ->
                         navController.navigateToMovie(movieId)
-                    }
+                    },
                 )
-            }
+            },
         )
-        settingsScreen(
-            onBackClick = navController::popBackStack
+        profileGraph(
+            nestedGraphs = {
+
+            },
         )
     }
 }
