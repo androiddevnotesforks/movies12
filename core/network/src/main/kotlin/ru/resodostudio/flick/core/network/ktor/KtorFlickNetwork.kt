@@ -7,7 +7,9 @@ import ru.resodostudio.flick.core.network.FlickNetworkDataSource
 import ru.resodostudio.flick.core.network.model.NetworkMovie
 import ru.resodostudio.flick.core.network.model.NetworkPagedResult
 import ru.resodostudio.flick.core.network.model.NetworkPerson
+import ru.resodostudio.flick.core.network.model.NetworkRequestToken
 import ru.resodostudio.flick.core.network.model.NetworkTvShow
+import ru.resodostudio.flick.core.network.resource.AuthenticationResource
 import ru.resodostudio.flick.core.network.resource.MovieResource
 import ru.resodostudio.flick.core.network.resource.PersonResource
 import ru.resodostudio.flick.core.network.resource.TvShowResource
@@ -18,6 +20,12 @@ import javax.inject.Singleton
 internal class KtorFlickNetwork @Inject constructor(
     private val httpClient: HttpClient,
 ) : FlickNetworkDataSource {
+
+    override suspend fun createRequestToken(): NetworkRequestToken {
+        return httpClient
+            .get(AuthenticationResource.NewToken)
+            .body<NetworkRequestToken>()
+    }
 
     override suspend fun getMovies(page: Int): NetworkPagedResult<List<NetworkMovie>> {
         return httpClient
