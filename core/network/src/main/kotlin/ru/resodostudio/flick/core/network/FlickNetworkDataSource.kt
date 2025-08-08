@@ -4,11 +4,14 @@ import ru.resodostudio.flick.core.network.model.NetworkMovie
 import ru.resodostudio.flick.core.network.model.NetworkPagedResult
 import ru.resodostudio.flick.core.network.model.NetworkPerson
 import ru.resodostudio.flick.core.network.model.NetworkRequestToken
+import ru.resodostudio.flick.core.network.model.NetworkSession
 import ru.resodostudio.flick.core.network.model.NetworkTvShow
 
 interface FlickNetworkDataSource {
 
     suspend fun createRequestToken(): NetworkRequestToken
+
+    suspend fun createSession(requestToken: String): NetworkSession
 
     suspend fun getMovies(page: Int): NetworkPagedResult<List<NetworkMovie>>
 

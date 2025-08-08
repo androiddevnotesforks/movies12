@@ -9,4 +9,9 @@ internal class AuthenticationResource {
     internal class NewToken(
         val parent: AuthenticationResource = AuthenticationResource(),
     )
+
+    @Resource("session/new")
+    internal class NewSession(
+        val parent: AuthenticationResource = AuthenticationResource(),
+    )
 }
