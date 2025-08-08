@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "ru.resodostudio.flick.feature.profile"
 }
+
+dependencies {
+    implementation(libs.androidx.browser)
+}
