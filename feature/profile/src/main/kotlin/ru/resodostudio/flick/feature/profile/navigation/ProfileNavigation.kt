@@ -5,22 +5,25 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import kotlinx.serialization.Serializable
 
-const val PROFILE_GRAPH_ROUTE_PATTERN = "profile_graph"
-const val PROFILE_ROUTE = "profile_route"
+@Serializable
+data object ProfileBaseRoute
 
-fun NavController.navigateToProfileGraph(navOptions: NavOptions? = null) {
-    this.navigate(PROFILE_GRAPH_ROUTE_PATTERN, navOptions)
+@Serializable
+data object ProfileRoute
+
+fun NavController.navigateToProfile(navOptions: NavOptions? = null) {
+    this.navigate(ProfileBaseRoute, navOptions)
 }
 
-fun NavGraphBuilder.profileGraph(
+fun NavGraphBuilder.profileScreen(
     nestedGraphs: NavGraphBuilder.() -> Unit,
 ) {
-    navigation(
-        route = PROFILE_GRAPH_ROUTE_PATTERN,
-        startDestination = PROFILE_ROUTE,
+    navigation<ProfileBaseRoute>(
+        startDestination = ProfileRoute,
     ) {
-        composable(route = PROFILE_ROUTE) {
+        composable<ProfileRoute> {
 
         }
         nestedGraphs()

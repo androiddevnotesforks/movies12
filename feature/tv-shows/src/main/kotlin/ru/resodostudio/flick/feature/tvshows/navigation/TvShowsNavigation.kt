@@ -5,24 +5,27 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import kotlinx.serialization.Serializable
 import ru.resodostudio.flick.feature.tvshows.TvShowsRoute
 
-const val TV_SHOWS_GRAPH_ROUTE_PATTERN = "tv_shows_graph"
-const val TV_SHOWS_ROUTE = "tv_shows_route"
+@Serializable
+data object TvShowsBaseRoute
 
-fun NavController.navigateToTvShowsGraph(navOptions: NavOptions? = null) {
-    this.navigate(TV_SHOWS_GRAPH_ROUTE_PATTERN, navOptions)
+@Serializable
+data object TvShowsRoute
+
+fun NavController.navigateToTvShows(navOptions: NavOptions? = null) {
+    this.navigate(TvShowsBaseRoute, navOptions)
 }
 
-fun NavGraphBuilder.tvShowsGraph(
+fun NavGraphBuilder.tvShowsScreen(
     onTvShowClick: (Int) -> Unit,
     nestedGraphs: NavGraphBuilder.() -> Unit,
 ) {
-    navigation(
-        route = TV_SHOWS_GRAPH_ROUTE_PATTERN,
-        startDestination = TV_SHOWS_ROUTE,
+    navigation<TvShowsBaseRoute>(
+        startDestination = TvShowsRoute,
     ) {
-        composable(route = TV_SHOWS_ROUTE) {
+        composable<TvShowsRoute> {
             TvShowsRoute(
                 onTvShowClick = onTvShowClick,
             )

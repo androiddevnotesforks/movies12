@@ -2,34 +2,33 @@ package ru.resodostudio.flick.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
-import ru.resodostudio.flick.feature.home.navigation.HOME_GRAPH_ROUTE_PATTERN
-import ru.resodostudio.flick.feature.home.navigation.homeGraph
+import ru.resodostudio.flick.feature.home.navigation.HomeBaseRoute
+import ru.resodostudio.flick.feature.home.navigation.homeScreen
 import ru.resodostudio.flick.feature.movie.navigation.movieScreen
 import ru.resodostudio.flick.feature.movie.navigation.navigateToMovie
-import ru.resodostudio.flick.feature.movies.navigation.moviesGraph
-import ru.resodostudio.flick.feature.people.navigation.peopleGraph
+import ru.resodostudio.flick.feature.movies.navigation.moviesScreen
+import ru.resodostudio.flick.feature.people.navigation.peopleScreen
 import ru.resodostudio.flick.feature.person.navigation.navigateToPerson
 import ru.resodostudio.flick.feature.person.navigation.personScreen
-import ru.resodostudio.flick.feature.profile.navigation.profileGraph
-import ru.resodostudio.flick.feature.tvshows.navigation.tvShowsGraph
+import ru.resodostudio.flick.feature.profile.navigation.profileScreen
+import ru.resodostudio.flick.feature.tvshows.navigation.tvShowsScreen
 import ru.resodostudio.flick.ui.FlickAppState
 
 @Composable
 fun FlickNavHost(
     appState: FlickAppState,
-    startDestination: String = HOME_GRAPH_ROUTE_PATTERN,
 ) {
     val navController = appState.navController
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = HomeBaseRoute,
     ) {
-        homeGraph(
+        homeScreen(
             nestedGraphs = {
 
             },
         )
-        moviesGraph(
+        moviesScreen(
             onMovieClick = { movieId ->
                 navController.navigateToMovie(movieId)
             },
@@ -42,7 +41,7 @@ fun FlickNavHost(
                 )
             },
         )
-        tvShowsGraph(
+        tvShowsScreen(
             onTvShowClick = { tvShowId ->
 
             },
@@ -50,7 +49,7 @@ fun FlickNavHost(
 
             },
         )
-        peopleGraph(
+        peopleScreen(
             onPersonClick = { personId ->
                 navController.navigateToPerson(personId)
             },
@@ -63,7 +62,7 @@ fun FlickNavHost(
                 )
             },
         )
-        profileGraph(
+        profileScreen(
             nestedGraphs = {
 
             },

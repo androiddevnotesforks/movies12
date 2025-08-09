@@ -30,11 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import ru.resodostudio.flick.R
 import ru.resodostudio.flick.core.designsystem.component.FlickTopAppBar
 import ru.resodostudio.flick.navigation.FlickNavHost
-import ru.resodostudio.flick.navigation.TopLevelDestination
+import kotlin.reflect.KClass
 
 @Composable
 fun FlickApp(
@@ -63,7 +64,7 @@ fun FlickApp(
         navigationItemVerticalArrangement = Arrangement.Center,
         navigationItems = {
             appState.topLevelDestinations.forEach { destination ->
-                val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
+                val selected = currentDestination.isRouteInHierarchy(destination.baseRoute)
                 NavigationSuiteItem(
                     selected = selected,
                     icon = {
@@ -120,7 +121,7 @@ fun FlickApp(
     }
 }
 
-private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =
+private fun NavDestination?.isRouteInHierarchy(route: KClass<*>) =
     this?.hierarchy?.any {
-        it.route?.contains(destination.name, true) ?: false
+        it.hasRoute(route)
     } ?: false

@@ -5,24 +5,27 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import kotlinx.serialization.Serializable
 import ru.resodostudio.flick.feature.people.PeopleRoute
 
-const val PEOPLE_GRAPH_ROUTE_PATTERN = "people_graph"
-const val PEOPLE_ROUTE = "people_route"
+@Serializable
+data object PeopleBaseRoute
+
+@Serializable
+data object PeopleRoute
 
 fun NavController.navigateToPeople(navOptions: NavOptions? = null) {
-    this.navigate(PEOPLE_ROUTE, navOptions)
+    this.navigate(PeopleBaseRoute, navOptions)
 }
 
-fun NavGraphBuilder.peopleGraph(
+fun NavGraphBuilder.peopleScreen(
     onPersonClick: (Int) -> Unit,
-    nestedGraphs: NavGraphBuilder.() -> Unit
+    nestedGraphs: NavGraphBuilder.() -> Unit,
 ) {
-    navigation(
-        route = PEOPLE_GRAPH_ROUTE_PATTERN,
-        startDestination = PEOPLE_ROUTE,
+    navigation<PeopleBaseRoute>(
+        startDestination = PeopleRoute,
     ) {
-        composable(route = PEOPLE_ROUTE) {
+        composable<PeopleRoute> {
             PeopleRoute(onPersonClick = onPersonClick)
         }
         nestedGraphs()
