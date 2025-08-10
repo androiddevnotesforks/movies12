@@ -6,6 +6,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import kotlinx.serialization.Serializable
+import ru.resodostudio.flick.feature.profile.ProfileScreen
 
 @Serializable
 data object ProfileBaseRoute
@@ -24,7 +25,7 @@ fun NavGraphBuilder.profileScreen(
         startDestination = ProfileRoute,
     ) {
         composable<ProfileRoute> {
-
+            ProfileScreen()
         }
         nestedGraphs()
     }

@@ -13,6 +13,7 @@ android {
 dependencies {
     api(projects.core.designsystem)
     api(projects.core.model)
+    api(projects.core.locales)
 
     implementation(platform(libs.coil.bom))
     implementation(libs.coil.compose)
