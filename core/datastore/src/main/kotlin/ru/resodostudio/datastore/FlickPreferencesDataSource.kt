@@ -3,8 +3,15 @@ package ru.resodostudio.datastore
 import androidx.datastore.core.DataStore
 import kotlinx.coroutines.flow.map
 import ru.resodostudio.flick.core.model.DarkThemeConfig
+import ru.resodostudio.flick.core.model.DarkThemeConfig.DARK
+import ru.resodostudio.flick.core.model.DarkThemeConfig.FOLLOW_SYSTEM
+import ru.resodostudio.flick.core.model.DarkThemeConfig.LIGHT
 import ru.resodostudio.flick.core.model.UserData
-import ru.resodostudios.flick.core.datastore.DarkThemeConfigProto
+import ru.resodostudios.flick.core.datastore.DarkThemeConfigProto.DARK_THEME_CONFIG_DARK
+import ru.resodostudios.flick.core.datastore.DarkThemeConfigProto.DARK_THEME_CONFIG_FOLLOW_SYSTEM
+import ru.resodostudios.flick.core.datastore.DarkThemeConfigProto.DARK_THEME_CONFIG_LIGHT
+import ru.resodostudios.flick.core.datastore.DarkThemeConfigProto.DARK_THEME_CONFIG_UNSPECIFIED
+import ru.resodostudios.flick.core.datastore.DarkThemeConfigProto.UNRECOGNIZED
 import ru.resodostudios.flick.core.datastore.UserPreferences
 import ru.resodostudios.flick.core.datastore.copy
 import javax.inject.Inject
@@ -17,16 +24,16 @@ class FlickPreferencesDataSource @Inject constructor(
             UserData(
                 darkThemeConfig = when (it.darkThemeConfig) {
                     null,
-                    DarkThemeConfigProto.DARK_THEME_CONFIG_UNSPECIFIED,
-                    DarkThemeConfigProto.UNRECOGNIZED,
-                    DarkThemeConfigProto.DARK_THEME_CONFIG_FOLLOW_SYSTEM,
-                        -> DarkThemeConfig.FOLLOW_SYSTEM
+                    DARK_THEME_CONFIG_UNSPECIFIED,
+                    UNRECOGNIZED,
+                    DARK_THEME_CONFIG_FOLLOW_SYSTEM,
+                        -> FOLLOW_SYSTEM
 
-                    DarkThemeConfigProto.DARK_THEME_CONFIG_LIGHT -> DarkThemeConfig.LIGHT
-
-                    DarkThemeConfigProto.DARK_THEME_CONFIG_DARK -> DarkThemeConfig.DARK
+                    DARK_THEME_CONFIG_LIGHT -> LIGHT
+                    DARK_THEME_CONFIG_DARK -> DARK
                 },
-                useDynamicColor = it.useDynamicColor
+                useDynamicColor = it.useDynamicColor,
+                sessionId = it.sessionId,
             )
         }
 
@@ -42,9 +49,9 @@ class FlickPreferencesDataSource @Inject constructor(
         userPreferences.updateData {
             it.copy {
                 this.darkThemeConfig = when (darkThemeConfig) {
-                    DarkThemeConfig.FOLLOW_SYSTEM -> DarkThemeConfigProto.DARK_THEME_CONFIG_FOLLOW_SYSTEM
-                    DarkThemeConfig.LIGHT -> DarkThemeConfigProto.DARK_THEME_CONFIG_LIGHT
-                    DarkThemeConfig.DARK -> DarkThemeConfigProto.DARK_THEME_CONFIG_DARK
+                    FOLLOW_SYSTEM -> DARK_THEME_CONFIG_FOLLOW_SYSTEM
+                    LIGHT -> DARK_THEME_CONFIG_LIGHT
+                    DARK -> DARK_THEME_CONFIG_DARK
                 }
             }
         }
