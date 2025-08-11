@@ -35,6 +35,7 @@ class FlickPreferencesDataSource @Inject constructor(
                 },
                 useDynamicColor = it.useDynamicColor,
                 sessionId = it.sessionId,
+                requestToken = it.requestToken,
             )
         }
         .catch { UserPreferences.getDefaultInstance() }
@@ -68,6 +69,16 @@ class FlickPreferencesDataSource @Inject constructor(
             userPreferences.updateData {
                 it.copy {
                     this.sessionId = sessionId
+                }
+            }
+        }
+    }
+
+    suspend fun updateRequestToken(requestToken: String) {
+        runCatching {
+            userPreferences.updateData {
+                it.copy {
+                    this.requestToken = requestToken
                 }
             }
         }

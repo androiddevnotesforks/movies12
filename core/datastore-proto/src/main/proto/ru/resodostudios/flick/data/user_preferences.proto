@@ -13,5 +13,7 @@ message UserPreferences {
 
     string session_id = 3;
 
-    // NEXT AVAILABLE ID: 4
+    string request_token = 4;
+
+    // NEXT AVAILABLE ID: 5
 }
