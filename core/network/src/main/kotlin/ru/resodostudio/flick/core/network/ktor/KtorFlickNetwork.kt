@@ -26,13 +26,13 @@ internal class KtorFlickNetwork @Inject constructor(
 
     override suspend fun createRequestToken(): NetworkRequestToken {
         return httpClient
-            .get(AuthenticationResource.NewToken)
+            .get(AuthenticationResource.NewToken())
             .body<NetworkRequestToken>()
     }
 
     override suspend fun createSession(requestToken: String): NetworkSession {
         return httpClient
-            .post(AuthenticationResource.NewSession) { setBody(requestToken) }
+            .post(AuthenticationResource.NewSession()) { setBody(requestToken) }
             .body<NetworkSession>()
     }
 

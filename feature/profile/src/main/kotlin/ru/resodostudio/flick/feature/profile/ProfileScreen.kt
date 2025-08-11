@@ -13,6 +13,7 @@ import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,6 +34,7 @@ internal fun ProfileScreen(
 
     ProfileScreen(
         profileUiState = profileUiState,
+        onLoginClick = viewModel::getRequestToken,
     )
 }
 
@@ -40,6 +42,7 @@ internal fun ProfileScreen(
 @Composable
 private fun ProfileScreen(
     profileUiState: ProfileUiState,
+    onLoginClick: () -> Unit = {},
 ) {
     when (profileUiState) {
         ProfileUiState.Loading -> LoadingState()
@@ -51,22 +54,27 @@ private fun ProfileScreen(
                 if (profileUiState.isLoggedIn) {
                     Text("You are logged in!")
                 } else {
-                    val context = LocalContext.current
-                    val toolbarColor = MaterialTheme.colorScheme.background.toArgb()
+
                     Button(
-                        onClick = {
-                            launchCustomChromeTab(
-                                context = context,
-                                uri = "".toUri(),
-                                toolbarColor = toolbarColor,
-                            )
-                        },
+                        onClick = onLoginClick,
                         shapes = ButtonDefaults.shapes(),
                     ) {
                         Text(
                             text = stringResource(localesR.string.login),
                         )
                     }
+                }
+            }
+
+            val context = LocalContext.current
+            val toolbarColor = MaterialTheme.colorScheme.background.toArgb()
+            LaunchedEffect(profileUiState.requestToken) {
+                if (profileUiState.requestToken.isNotEmpty()) {
+                    launchCustomChromeTab(
+                        context = context,
+                        uri = "https://www.themoviedb.org/authenticate/${profileUiState.requestToken}".toUri(),
+                        toolbarColor = toolbarColor,
+                    )
                 }
             }
         }
