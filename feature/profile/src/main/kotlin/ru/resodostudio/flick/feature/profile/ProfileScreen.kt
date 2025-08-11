@@ -13,37 +13,65 @@ import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ru.resodostudio.flick.core.ui.LoadingState
 import ru.resodostudio.flick.core.locales.R as localesR
+
+@Composable
+internal fun ProfileScreen(
+    viewModel: ProfileViewModel = hiltViewModel(),
+) {
+    val profileUiState by viewModel.profileUiState.collectAsStateWithLifecycle()
+
+    ProfileScreen(
+        profileUiState = profileUiState,
+    )
+}
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-internal fun ProfileScreen() {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize(),
-    ) {
-        val context = LocalContext.current
-        val toolbarColor = MaterialTheme.colorScheme.background.toArgb()
-        Button(
-            onClick = {
-                launchCustomChromeTab(
-                    context = context,
-                    uri = "".toUri(),
-                    toolbarColor = toolbarColor,
-                )
-            },
-            shapes = ButtonDefaults.shapes(),
-        ) {
-            Text(
-                text = stringResource(localesR.string.login),
-            )
+private fun ProfileScreen(
+    profileUiState: ProfileUiState,
+) {
+    when (profileUiState) {
+        ProfileUiState.Loading -> LoadingState()
+        is ProfileUiState.Success -> {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier.fillMaxSize(),
+            ) {
+                if (profileUiState.isLoggedIn) {
+                    Text("You are logged in!")
+                } else {
+                    val context = LocalContext.current
+                    val toolbarColor = MaterialTheme.colorScheme.background.toArgb()
+                    Button(
+                        onClick = {
+                            launchCustomChromeTab(
+                                context = context,
+                                uri = "".toUri(),
+                                toolbarColor = toolbarColor,
+                            )
+                        },
+                        shapes = ButtonDefaults.shapes(),
+                    ) {
+                        Text(
+                            text = stringResource(localesR.string.login),
+                        )
+                    }
+                }
+            }
         }
+
+        ProfileUiState.Error -> LoadingState()
     }
 }
 
