@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import ru.resodostudio.core.data.repository.AuthenticationRepository
+import ru.resodostudio.core.data.repository.AuthenticationRepositoryImpl
 import ru.resodostudio.core.data.repository.MoviesRepository
 import ru.resodostudio.core.data.repository.MoviesRepositoryImpl
 import ru.resodostudio.core.data.repository.PeopleRepository
@@ -43,4 +45,9 @@ internal abstract class DataModule {
     internal abstract fun bindsNetworkMonitor(
         impl: ConnectivityManagerNetworkMonitor,
     ): NetworkMonitor
+
+    @Binds
+    internal abstract fun bindsAuthenticationRepository(
+        impl: AuthenticationRepositoryImpl,
+    ): AuthenticationRepository
 }
