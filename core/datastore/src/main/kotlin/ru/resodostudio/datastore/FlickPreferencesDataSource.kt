@@ -1,6 +1,7 @@
 package ru.resodostudio.datastore
 
 import androidx.datastore.core.DataStore
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import ru.resodostudio.flick.core.model.DarkThemeConfig
 import ru.resodostudio.flick.core.model.DarkThemeConfig.DARK
@@ -36,22 +37,37 @@ class FlickPreferencesDataSource @Inject constructor(
                 sessionId = it.sessionId,
             )
         }
+        .catch { UserPreferences.getDefaultInstance() }
 
     suspend fun setDynamicColorPreference(useDynamicColor: Boolean) {
-        userPreferences.updateData {
-            it.copy {
-                this.useDynamicColor = useDynamicColor
+        runCatching {
+            userPreferences.updateData {
+                it.copy {
+                    this.useDynamicColor = useDynamicColor
+                }
             }
         }
     }
 
     suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig) {
-        userPreferences.updateData {
-            it.copy {
-                this.darkThemeConfig = when (darkThemeConfig) {
-                    FOLLOW_SYSTEM -> DARK_THEME_CONFIG_FOLLOW_SYSTEM
-                    LIGHT -> DARK_THEME_CONFIG_LIGHT
-                    DARK -> DARK_THEME_CONFIG_DARK
+        runCatching {
+            userPreferences.updateData {
+                it.copy {
+                    this.darkThemeConfig = when (darkThemeConfig) {
+                        FOLLOW_SYSTEM -> DARK_THEME_CONFIG_FOLLOW_SYSTEM
+                        LIGHT -> DARK_THEME_CONFIG_LIGHT
+                        DARK -> DARK_THEME_CONFIG_DARK
+                    }
+                }
+            }
+        }
+    }
+
+    suspend fun updateSessionId(sessionId: String) {
+        runCatching {
+            userPreferences.updateData {
+                it.copy {
+                    this.sessionId = sessionId
                 }
             }
         }
