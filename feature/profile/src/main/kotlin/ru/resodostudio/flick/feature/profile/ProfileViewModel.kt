@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class ProfileViewModel @Inject constructor(
-    userDataRepository: UserDataRepository,
+    private val userDataRepository: UserDataRepository,
     private val authenticationRepository: AuthenticationRepository,
 ) : ViewModel() {
 
@@ -35,6 +35,12 @@ internal class ProfileViewModel @Inject constructor(
     fun getRequestToken() {
         viewModelScope.launch {
             authenticationRepository.getRequestToken()
+        }
+    }
+
+    fun clearRequestToken() {
+        viewModelScope.launch {
+            userDataRepository.updateRequestToken("")
         }
     }
 }

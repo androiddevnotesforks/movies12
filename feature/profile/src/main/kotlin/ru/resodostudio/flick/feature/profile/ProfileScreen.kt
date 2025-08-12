@@ -35,6 +35,7 @@ internal fun ProfileScreen(
     ProfileScreen(
         profileUiState = profileUiState,
         onLoginClick = viewModel::getRequestToken,
+        clearRequestToken = viewModel::clearRequestToken,
     )
 }
 
@@ -43,6 +44,7 @@ internal fun ProfileScreen(
 private fun ProfileScreen(
     profileUiState: ProfileUiState,
     onLoginClick: () -> Unit = {},
+    clearRequestToken: () -> Unit = {},
 ) {
     when (profileUiState) {
         ProfileUiState.Loading -> LoadingState()
@@ -75,6 +77,7 @@ private fun ProfileScreen(
                         uri = "https://www.themoviedb.org/authenticate/${profileUiState.requestToken}".toUri(),
                         toolbarColor = toolbarColor,
                     )
+                    clearRequestToken()
                 }
             }
         }
