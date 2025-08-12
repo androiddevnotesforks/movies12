@@ -5,15 +5,15 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.resodostudio.core.data.repository.AuthenticationRepository
-import ru.resodostudio.core.data.repository.AuthenticationRepositoryImpl
+import ru.resodostudio.core.data.repository.impl.AuthenticationRepositoryImpl
 import ru.resodostudio.core.data.repository.MoviesRepository
-import ru.resodostudio.core.data.repository.MoviesRepositoryImpl
+import ru.resodostudio.core.data.repository.impl.MoviesRepositoryImpl
 import ru.resodostudio.core.data.repository.PeopleRepository
-import ru.resodostudio.core.data.repository.PeopleRepositoryImpl
+import ru.resodostudio.core.data.repository.impl.PeopleRepositoryImpl
 import ru.resodostudio.core.data.repository.TvShowsRepository
-import ru.resodostudio.core.data.repository.TvShowsRepositoryImpl
+import ru.resodostudio.core.data.repository.impl.TvShowsRepositoryImpl
 import ru.resodostudio.core.data.repository.UserDataRepository
-import ru.resodostudio.core.data.repository.UserDataRepositoryImpl
+import ru.resodostudio.core.data.repository.impl.UserDataRepositoryImpl
 import ru.resodostudio.core.data.util.ConnectivityManagerNetworkMonitor
 import ru.resodostudio.core.data.util.NetworkMonitor
 

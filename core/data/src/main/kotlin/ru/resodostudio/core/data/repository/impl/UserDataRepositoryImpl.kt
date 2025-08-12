@@ -1,6 +1,7 @@
-package ru.resodostudio.core.data.repository
+package ru.resodostudio.core.data.repository.impl
 
 import kotlinx.coroutines.flow.Flow
+import ru.resodostudio.core.data.repository.UserDataRepository
 import ru.resodostudio.datastore.FlickPreferencesDataSource
 import ru.resodostudio.flick.core.model.DarkThemeConfig
 import ru.resodostudio.flick.core.model.UserData

@@ -1,4 +1,4 @@
-package ru.resodostudio.core.data.repository
+package ru.resodostudio.core.data.repository.impl
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
@@ -8,6 +8,7 @@ import androidx.paging.map
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ru.resodostudio.core.data.paging.MoviesRemoteMediator
+import ru.resodostudio.core.data.repository.MoviesRepository
 import ru.resodostudio.flick.core.database.dao.MoviesDao
 import ru.resodostudio.flick.core.database.model.asExternalModel
 import ru.resodostudio.flick.core.model.Movie

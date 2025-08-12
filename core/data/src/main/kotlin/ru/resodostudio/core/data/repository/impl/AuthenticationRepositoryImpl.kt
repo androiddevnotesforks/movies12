@@ -1,5 +1,7 @@
-package ru.resodostudio.core.data.repository
+package ru.resodostudio.core.data.repository.impl
 
+import ru.resodostudio.core.data.repository.AuthenticationRepository
+import ru.resodostudio.core.data.repository.UserDataRepository
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
 import javax.inject.Inject
 
