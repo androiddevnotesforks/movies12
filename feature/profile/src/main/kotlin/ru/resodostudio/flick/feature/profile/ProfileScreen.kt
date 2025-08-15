@@ -24,6 +24,7 @@ import androidx.core.net.toUri
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import ru.resodostudio.flick.core.ui.LoadingState
+import ru.resodostudio.flick.feature.profile.navigation.PROFILE_DEEP_LINK_BASE_PATH
 import ru.resodostudio.flick.core.locales.R as localesR
 
 @Composable
@@ -74,7 +75,7 @@ private fun ProfileScreen(
                 if (profileUiState.requestToken.isNotEmpty()) {
                     launchCustomChromeTab(
                         context = context,
-                        uri = "https://www.themoviedb.org/authenticate/${profileUiState.requestToken}".toUri(),
+                        uri = "https://www.themoviedb.org/authenticate/${profileUiState.requestToken}?redirect_to=$PROFILE_DEEP_LINK_BASE_PATH".toUri(),
                         toolbarColor = toolbarColor,
                     )
                     clearRequestToken()
