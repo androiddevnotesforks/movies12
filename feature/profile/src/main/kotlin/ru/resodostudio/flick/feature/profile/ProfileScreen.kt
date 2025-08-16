@@ -86,7 +86,7 @@ private fun ProfileScreen(
                 if (profileUiState.requestToken.isNotEmpty()) {
                     launchCustomChromeTab(
                         context = context,
-                        uri = "https://www.themoviedb.org/authenticate/${profileUiState.requestToken}?redirect_to=$DEEP_LINK_SCHEME_AND_HOST/$PROFILE_PATH/${profileUiState.requestToken}".toUri(),
+                        uri = getLoginUri(profileUiState.requestToken),
                         toolbarColor = toolbarColor,
                     )
                     clearRequestToken()
@@ -115,4 +115,11 @@ private fun launchCustomChromeTab(
         .setDefaultColorSchemeParams(customTabBarColor)
         .build()
     customTabsIntent.launchUrl(context, uri)
+}
+
+private fun getLoginUri(requestToken: String): Uri {
+    return buildString {
+        append("https://www.themoviedb.org/authenticate/$requestToken")
+        append("?redirect_to=$DEEP_LINK_SCHEME_AND_HOST/$PROFILE_PATH/$requestToken")
+    }.toUri()
 }
