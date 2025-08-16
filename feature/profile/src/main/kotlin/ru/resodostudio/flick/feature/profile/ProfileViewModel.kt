@@ -63,6 +63,12 @@ internal class ProfileViewModel @Inject constructor(
             authenticationRepository.createSession(requestToken)
         }
     }
+
+    fun deleteSession() {
+        viewModelScope.launch {
+            authenticationRepository.deleteSession()
+        }
+    }
 }
 
 sealed interface ProfileUiState {

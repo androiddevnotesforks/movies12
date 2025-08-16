@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="home">Главная</string>
-    <string name="login">Login</string>
+    <string name="login">Войти</string>
+    <string name="logout">Выйти</string>
     <string name="movies">Фильмы</string>
     <string name="people">Люди</string>
     <string name="profile">Профиль</string>

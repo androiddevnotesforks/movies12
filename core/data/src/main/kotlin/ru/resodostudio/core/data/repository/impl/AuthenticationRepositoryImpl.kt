@@ -1,5 +1,6 @@
 package ru.resodostudio.core.data.repository.impl
 
+import kotlinx.coroutines.flow.first
 import ru.resodostudio.core.data.repository.AuthenticationRepository
 import ru.resodostudio.core.data.repository.UserDataRepository
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
@@ -18,5 +19,11 @@ internal class AuthenticationRepositoryImpl @Inject constructor(
     override suspend fun createSession(requestToken: String) {
         val sessionResult = flickNetworkDataSource.createSession(requestToken)
         sessionResult.sessionId?.let { userDataRepository.updateSessionId(it) }
+    }
+
+    override suspend fun deleteSession() {
+        val sessionId = userDataRepository.userData.first().sessionId
+        flickNetworkDataSource.deleteSession(sessionId)
+        userDataRepository.updateSessionId("")
     }
 }

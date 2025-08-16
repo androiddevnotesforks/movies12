@@ -5,4 +5,6 @@ interface AuthenticationRepository {
     suspend fun getRequestToken()
 
     suspend fun createSession(requestToken: String)
+
+    suspend fun deleteSession()
 }

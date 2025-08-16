@@ -4,6 +4,7 @@
 
     <string name="home">Home</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="movies">Movies</string>
     <string name="people">People</string>
     <string name="profile">Profile</string>

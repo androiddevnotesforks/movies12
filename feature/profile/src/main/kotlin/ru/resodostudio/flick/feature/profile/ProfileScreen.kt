@@ -39,6 +39,7 @@ internal fun ProfileScreen(
         onLoginClick = viewModel::getRequestToken,
         clearRequestToken = viewModel::clearRequestToken,
         createSession = viewModel::createSession,
+        onLogoutClick = viewModel::deleteSession,
     )
 }
 
@@ -47,6 +48,7 @@ internal fun ProfileScreen(
 private fun ProfileScreen(
     profileUiState: ProfileUiState,
     onLoginClick: () -> Unit = {},
+    onLogoutClick: () -> Unit = {},
     clearRequestToken: () -> Unit = {},
     createSession: (String) -> Unit = {},
 ) {
@@ -58,7 +60,14 @@ private fun ProfileScreen(
                 modifier = Modifier.fillMaxSize(),
             ) {
                 if (profileUiState.isLoggedIn) {
-                    Text("You are logged in!")
+                    Button(
+                        onClick = onLogoutClick,
+                        shapes = ButtonDefaults.shapes(),
+                    ) {
+                        Text(
+                            text = stringResource(localesR.string.logout),
+                        )
+                    }
                 } else {
                     Button(
                         onClick = onLoginClick,
