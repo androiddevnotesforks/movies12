@@ -6,6 +6,7 @@ import io.ktor.client.plugins.resources.get
 import io.ktor.client.plugins.resources.post
 import io.ktor.client.request.setBody
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
+import ru.resodostudio.flick.core.network.model.CreateSessionRequestBody
 import ru.resodostudio.flick.core.network.model.NetworkMovie
 import ru.resodostudio.flick.core.network.model.NetworkPagedResult
 import ru.resodostudio.flick.core.network.model.NetworkPerson
@@ -32,7 +33,9 @@ internal class KtorFlickNetwork @Inject constructor(
 
     override suspend fun createSession(requestToken: String): NetworkSession {
         return httpClient
-            .post(AuthenticationResource.NewSession()) { setBody(requestToken) }
+            .post(AuthenticationResource.NewSession()) {
+                setBody(CreateSessionRequestBody(requestToken))
+            }
             .body<NetworkSession>()
     }
 

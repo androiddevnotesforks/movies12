@@ -15,7 +15,8 @@ internal class AuthenticationRepositoryImpl @Inject constructor(
         userDataRepository.updateRequestToken(requestToken ?: "")
     }
 
-    override fun createSession() {
-        TODO("Not yet implemented")
+    override suspend fun createSession(requestToken: String) {
+        val sessionResult = flickNetworkDataSource.createSession(requestToken)
+        sessionResult.sessionId?.let { userDataRepository.updateSessionId(it) }
     }
 }

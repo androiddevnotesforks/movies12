@@ -23,8 +23,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import ru.resodostudio.flick.core.common.util.Constants.DEEP_LINK_SCHEME_AND_HOST
+import ru.resodostudio.flick.core.common.util.Constants.PROFILE_PATH
 import ru.resodostudio.flick.core.ui.LoadingState
-import ru.resodostudio.flick.feature.profile.navigation.PROFILE_DEEP_LINK_BASE_PATH
 import ru.resodostudio.flick.core.locales.R as localesR
 
 @Composable
@@ -37,6 +38,7 @@ internal fun ProfileScreen(
         profileUiState = profileUiState,
         onLoginClick = viewModel::getRequestToken,
         clearRequestToken = viewModel::clearRequestToken,
+        createSession = viewModel::createSession,
     )
 }
 
@@ -46,6 +48,7 @@ private fun ProfileScreen(
     profileUiState: ProfileUiState,
     onLoginClick: () -> Unit = {},
     clearRequestToken: () -> Unit = {},
+    createSession: (String) -> Unit = {},
 ) {
     when (profileUiState) {
         ProfileUiState.Loading -> LoadingState()
@@ -57,7 +60,6 @@ private fun ProfileScreen(
                 if (profileUiState.isLoggedIn) {
                     Text("You are logged in!")
                 } else {
-
                     Button(
                         onClick = onLoginClick,
                         shapes = ButtonDefaults.shapes(),
@@ -75,10 +77,15 @@ private fun ProfileScreen(
                 if (profileUiState.requestToken.isNotEmpty()) {
                     launchCustomChromeTab(
                         context = context,
-                        uri = "https://www.themoviedb.org/authenticate/${profileUiState.requestToken}?redirect_to=$PROFILE_DEEP_LINK_BASE_PATH".toUri(),
+                        uri = "https://www.themoviedb.org/authenticate/${profileUiState.requestToken}?redirect_to=$DEEP_LINK_SCHEME_AND_HOST/$PROFILE_PATH/${profileUiState.requestToken}".toUri(),
                         toolbarColor = toolbarColor,
                     )
                     clearRequestToken()
+                }
+            }
+            LaunchedEffect(profileUiState.requestTokenFromArgs) {
+                if (profileUiState.requestTokenFromArgs.isNotEmpty()) {
+                    createSession(profileUiState.requestTokenFromArgs)
                 }
             }
         }
