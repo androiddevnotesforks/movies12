@@ -5,24 +5,27 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import kotlinx.serialization.Serializable
 import ru.resodostudio.flick.feature.movies.MoviesRoute
 
-const val MOVIES_GRAPH_ROUTE_PATTERN = "movies_graph"
-const val MOVIES_ROUTE = "movies_route"
+@Serializable
+data object MoviesBaseRoute
 
-fun NavController.navigateToMoviesGraph(navOptions: NavOptions? = null) {
-    this.navigate(MOVIES_GRAPH_ROUTE_PATTERN, navOptions)
+@Serializable
+data object MoviesRoute
+
+fun NavController.navigateToMovies(navOptions: NavOptions? = null) {
+    this.navigate(MoviesBaseRoute, navOptions)
 }
 
-fun NavGraphBuilder.moviesGraph(
+fun NavGraphBuilder.moviesScreen(
     onMovieClick: (Int) -> Unit,
-    nestedGraphs: NavGraphBuilder.() -> Unit
+    nestedGraphs: NavGraphBuilder.() -> Unit,
 ) {
-    navigation(
-        route = MOVIES_GRAPH_ROUTE_PATTERN,
-        startDestination = MOVIES_ROUTE,
+    navigation<MoviesBaseRoute>(
+        startDestination = MoviesRoute,
     ) {
-        composable(route = MOVIES_ROUTE) {
+        composable<MoviesRoute> {
             MoviesRoute(onMovieClick = onMovieClick)
         }
         nestedGraphs()

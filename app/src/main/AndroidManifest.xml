@@ -31,6 +31,18 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="resodostudio.ru"
+                    android:pathPrefix="/profile"
+                    android:scheme="flick" />
+            </intent-filter>
         </activity>
         <meta-data
             android:name="google_analytics_adid_collection_enabled"

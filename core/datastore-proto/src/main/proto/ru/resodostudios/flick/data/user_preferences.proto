@@ -11,5 +11,9 @@ message UserPreferences {
 
     bool use_dynamic_color = 2;
 
-    // NEXT AVAILABLE ID: 3
+    string session_id = 3;
+
+    string request_token = 4;
+
+    // NEXT AVAILABLE ID: 5
 }

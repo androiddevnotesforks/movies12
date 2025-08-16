@@ -1,12 +1,13 @@
-package ru.resodostudio.core.data.repository
+package ru.resodostudio.core.data.repository.impl
 
 import kotlinx.coroutines.flow.Flow
+import ru.resodostudio.core.data.repository.UserDataRepository
 import ru.resodostudio.datastore.FlickPreferencesDataSource
 import ru.resodostudio.flick.core.model.DarkThemeConfig
 import ru.resodostudio.flick.core.model.UserData
 import javax.inject.Inject
 
-class UserDataRepositoryImpl @Inject constructor(
+internal class UserDataRepositoryImpl @Inject constructor(
     private val flickPreferencesDataSource: FlickPreferencesDataSource,
 ) : UserDataRepository {
 
@@ -18,5 +19,13 @@ class UserDataRepositoryImpl @Inject constructor(
 
     override suspend fun setDynamicColorPreference(useDynamicColor: Boolean) {
         flickPreferencesDataSource.setDynamicColorPreference(useDynamicColor)
+    }
+
+    override suspend fun updateRequestToken(requestToken: String) {
+        flickPreferencesDataSource.updateRequestToken(requestToken)
+    }
+
+    override suspend fun updateSessionId(sessionId: String) {
+        flickPreferencesDataSource.updateSessionId(sessionId)
     }
 }

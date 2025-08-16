@@ -11,4 +11,8 @@ interface UserDataRepository {
     suspend fun setDarkThemeConfig(darkThemeConfig: DarkThemeConfig)
 
     suspend fun setDynamicColorPreference(useDynamicColor: Boolean)
+
+    suspend fun updateRequestToken(requestToken: String)
+
+    suspend fun updateSessionId(sessionId: String)
 }

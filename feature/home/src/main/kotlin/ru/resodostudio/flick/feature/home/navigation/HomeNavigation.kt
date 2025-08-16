@@ -5,22 +5,25 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import kotlinx.serialization.Serializable
 
-const val HOME_GRAPH_ROUTE_PATTERN = "home_graph"
-const val HOME_ROUTE = "home_route"
+@Serializable
+data object HomeBaseRoute
 
-fun NavController.navigateToHomeGraph(navOptions: NavOptions? = null) {
-    this.navigate(HOME_GRAPH_ROUTE_PATTERN, navOptions)
+@Serializable
+data object HomeRoute
+
+fun NavController.navigateToHome(navOptions: NavOptions? = null) {
+    this.navigate(HomeBaseRoute, navOptions)
 }
 
-fun NavGraphBuilder.homeGraph(
-    nestedGraphs: NavGraphBuilder.() -> Unit
+fun NavGraphBuilder.homeScreen(
+    nestedGraphs: NavGraphBuilder.() -> Unit,
 ) {
-    navigation(
-        route = HOME_GRAPH_ROUTE_PATTERN,
-        startDestination = HOME_ROUTE,
+    navigation<HomeBaseRoute>(
+        startDestination = HomeRoute,
     ) {
-        composable(route = HOME_ROUTE) {
+        composable<HomeRoute> {
 
         }
         nestedGraphs()
