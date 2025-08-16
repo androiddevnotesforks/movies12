@@ -2,11 +2,13 @@ package ru.resodostudio.flick.core.network.ktor
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.plugins.resources.delete
 import io.ktor.client.plugins.resources.get
 import io.ktor.client.plugins.resources.post
 import io.ktor.client.request.setBody
 import ru.resodostudio.flick.core.network.FlickNetworkDataSource
 import ru.resodostudio.flick.core.network.model.CreateSessionRequestBody
+import ru.resodostudio.flick.core.network.model.DeleteSessionRequestBody
 import ru.resodostudio.flick.core.network.model.NetworkMovie
 import ru.resodostudio.flick.core.network.model.NetworkPagedResult
 import ru.resodostudio.flick.core.network.model.NetworkPerson
@@ -37,6 +39,14 @@ internal class KtorFlickNetwork @Inject constructor(
                 setBody(CreateSessionRequestBody(requestToken))
             }
             .body<NetworkSession>()
+    }
+
+    override suspend fun deleteSession(sessionId: String) {
+        return httpClient
+            .delete(AuthenticationResource.DeleteSession()) {
+                setBody(DeleteSessionRequestBody(sessionId))
+            }
+            .body()
     }
 
     override suspend fun getMovies(page: Int): NetworkPagedResult<List<NetworkMovie>> {

@@ -13,6 +13,8 @@ interface FlickNetworkDataSource {
 
     suspend fun createSession(requestToken: String): NetworkSession
 
+    suspend fun deleteSession(sessionId: String)
+
     suspend fun getMovies(page: Int): NetworkPagedResult<List<NetworkMovie>>
 
     suspend fun getPeople(page: Int): NetworkPagedResult<List<NetworkPerson>>

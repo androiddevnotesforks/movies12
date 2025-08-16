@@ -14,4 +14,9 @@ internal class AuthenticationResource {
     internal class NewSession(
         val parent: AuthenticationResource = AuthenticationResource(),
     )
+
+    @Resource("session")
+    internal class DeleteSession(
+        val parent: AuthenticationResource = AuthenticationResource(),
+    )
 }
